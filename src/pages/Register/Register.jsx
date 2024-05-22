@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Register.css'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
@@ -6,12 +6,16 @@ import { useSnapshot } from 'valtio'
 import state from '../../store'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Aos from 'aos'
 const Register = () => {
   const { handleSubmit, register, reset, formState: { errors } } = useForm();
   const navigate = useNavigate();
   const [passMissMatch ,setPassMissMatch]=useState(false);
   // const { setCustomer } = useCustomer();
   const snap = useSnapshot(state);
+  useEffect(()=>{
+    Aos.init();
+  },[]);
   const submit = async (data) => {
     console.log(data);
     if(data.password != data.confirm){
@@ -56,6 +60,7 @@ const Register = () => {
     
   }
 
+
   return (
     <div className='bg-register d-flex align-items-center justify-content-center'>
       <div className="container" width="100%">
@@ -63,7 +68,7 @@ const Register = () => {
           <div className="col-lg-4"></div>
           <div className="col-lg-4"></div>
           <div className="col-lg-4 col-md-6 col-sm-8">
-            <div class="container1 ">
+            <div data-aos="fade-left" data-aos-duration="1200" class="container1 ">
               <div class="heading">Register</div>
               <form action="" class="form">
                 <input

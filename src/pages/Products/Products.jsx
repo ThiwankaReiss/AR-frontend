@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CarouselItm from '../../components/CarouselItm/CarouselItm'
+import { useSnapshot } from 'valtio'
+import state from '../../store'
+import Aos from 'aos'
+
 const Products = () => {
+  useEffect(()=>{
+    Aos.init();
+  },[]);
+  const snap = useSnapshot(state);
   return (
     <div className="container">
       <div className="row">
-        <div className="col-lg-4"></div>
-        <div className="col-lg-8">
-          <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div className="col-lg-5 d-flex align-items-center justify-content-center">
+          <p>
+            <h1 data-aos="fade-down-right" data-aos-duration="1000" className='text-center' style={{color:snap.themeColor}}>Welcome to Thiwanka Reiss Show room</h1>
+            <br></br>
+            <h5 data-aos="fade-up" data-aos-duration="2000">Hope you have an inovative and enjoyable experience with us</h5>
+          </p>
+
+        </div>
+        <div className="col-lg-7">
+          <div data-aos="zoom-in" data-aos-duration="3000" id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
 

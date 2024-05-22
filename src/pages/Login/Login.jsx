@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Login.css'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
@@ -6,12 +6,17 @@ import { useSnapshot } from 'valtio'
 import state from '../../store'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Aos from 'aos'
+
 const Login = () => {
   const { handleSubmit, register, reset, formState: { errors } } = useForm();
   const navigate = useNavigate();
-
+  
   // const { setCustomer } = useCustomer();
-  const snap = useSnapshot(state);
+
+  useEffect(()=>{
+    Aos.init();
+  },[]);
   const submit = async (data) => {
     console.log(data);
     Swal.fire('Please wait')
@@ -53,7 +58,7 @@ const Login = () => {
         <div className="row ">
 
           <div className="col-lg-4 col-md-6 col-sm-8">
-            <div class="container1 ">
+            <div data-aos="fade-right" data-aos-duration="1200" class="container1 ">
               <div class="heading">Sign In</div>
               <form action="" class="form">
                 <input

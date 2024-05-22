@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import Products from './pages/Products/Products'
+import 'aos/dist/aos.css'
 
 function App() {
   const snap = useSnapshot(state);
