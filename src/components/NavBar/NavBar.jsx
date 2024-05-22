@@ -19,6 +19,7 @@ export default function NavBar({ navButton }) {
    
     useEffect(() => {
         setSelectedBtn(navButton);
+        console.log(navButton);
         const toastEl = document.getElementById('liveToast');
         if (toastEl) {
             const toastBootstrap = new bootstrap.Toast(toastEl);
@@ -34,11 +35,11 @@ export default function NavBar({ navButton }) {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <div className="collapse navbar-collapse add-margins" id="navbarSupportedContent">
+                    <div className="collapse navbar-collapse add-margins-nav" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto  mb-2 mb-lg-0 w-100 d-flex justify-content-around">
                             <li className="nav-item nav-bar-itm itm-link">
                                 <Link to="/"
-                                    onClick={() => { setSelectedBtn(1) }}
+                                    onClick={() => { setSelectedBtn(1); state.navButton=1 }}
                                     onMouseEnter={() => { sethoverBtn(1) }}
                                     onMouseLeave={() => { sethoverBtn(null) }}
                                     className={`nav-link ${(hoverBtn || selectedBtn) && (hoverBtn === 1 || selectedBtn == 1) ? 'selected-txt' : 'un-selected-txt'}`}
@@ -49,7 +50,7 @@ export default function NavBar({ navButton }) {
                             </li>
                             <li className="nav-item itm-link">
                                 <Link to="/login"
-                                    onClick={() => { setSelectedBtn(2) }}
+                                    onClick={() => { setSelectedBtn(2); state.navButton=2 }}
                                     onMouseEnter={() => { sethoverBtn(2) }}
                                     onMouseLeave={() => { sethoverBtn(null) }}
                                     className={`nav-link  ${(hoverBtn || selectedBtn) && (hoverBtn === 2 || selectedBtn == 2) ? 'selected-txt' : 'un-selected-txt'}`}
@@ -61,7 +62,7 @@ export default function NavBar({ navButton }) {
                             </li>
                             <li className="nav-item itm-link">
                                 <Link to="/register"
-                                    onClick={() => { setSelectedBtn(3) }}
+                                    onClick={() => { setSelectedBtn(3); state.navButton=3  }}
                                     onMouseEnter={() => { sethoverBtn(3) }}
                                     onMouseLeave={() => { sethoverBtn(null) }}
                                     className={`nav-link  ${(hoverBtn || selectedBtn) && (hoverBtn === 3 || selectedBtn == 3) ? 'selected-txt' : 'un-selected-txt'}`}

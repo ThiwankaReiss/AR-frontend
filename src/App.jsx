@@ -8,14 +8,16 @@ import state from './store'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
+import Products from './pages/Products/Products'
+
 function App() {
   const snap = useSnapshot(state);
-
+ console.log(snap.navButton);
   return (
     <BrowserRouter>
       <NavBar navButton={snap.navButton} />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Products />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
