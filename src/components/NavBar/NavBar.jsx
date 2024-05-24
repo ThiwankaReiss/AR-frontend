@@ -71,8 +71,18 @@ export default function NavBar({ navButton }) {
                                 </Link>
                                 {(hoverBtn || selectedBtn) && (hoverBtn === 3 || selectedBtn == 3) && (<div className='shadow-bellow'></div>)}
                             </li>
-
-
+                            
+                            <li className="nav-item itm-link">
+                                <Link to="/details"
+                                    onClick={() => { setSelectedBtn(4); state.navButton=4  }}
+                                    onMouseEnter={() => { sethoverBtn(4) }}
+                                    onMouseLeave={() => { sethoverBtn(null) }}
+                                    className={`nav-link  ${(hoverBtn || selectedBtn) && (hoverBtn === 4 || selectedBtn ==4) ? 'selected-txt' : 'un-selected-txt'}`}
+                                    aria-current="page">
+                                    <i class="bi bi-card-text"></i> Details
+                                </Link>
+                                {(hoverBtn || selectedBtn) && (hoverBtn === 4 || selectedBtn == 4) && (<div className='shadow-bellow'></div>)}
+                            </li>
                             <li className="nav-item itm-link">
                                 <a
                                     onClick={() => { setSelectedBtn(6) }}
