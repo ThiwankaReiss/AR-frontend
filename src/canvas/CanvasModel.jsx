@@ -22,6 +22,7 @@ const CanvasModel = () => {
 
             <CameraRig cameraCordinates={[0, 0, 20]}>
                 <Backdrop></Backdrop>
+               
                 <Center>
 
                     <Chair></Chair>
