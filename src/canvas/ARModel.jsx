@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, Center } from '@react-three/drei';
-import Chair from './Chair';
+import Chair from '../components/ThreeDModels/Chair';
 import ARCamRig from './ARCamRig';
-
+import WoodenChair from '../components/ThreeDModels/WoodenChair';
 const ARModel = ({ avgIntensity, lightX, lightY ,modelSize}) => {
     const adjustedIntensity = avgIntensity / 12; // Normalize intensity to range 0-1
     
@@ -19,7 +19,8 @@ const ARModel = ({ avgIntensity, lightX, lightY ,modelSize}) => {
             <Environment preset='city' />
             <ARCamRig cameraCoordinates={[0,0,modelSize]} >
                 <Center>
-                    <Chair />
+                    {/* <Chair/> */}
+                    <WoodenChair/>
                 </Center>
             </ARCamRig>
         </Canvas>

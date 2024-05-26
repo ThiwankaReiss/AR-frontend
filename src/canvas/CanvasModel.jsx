@@ -4,7 +4,7 @@ import { Environment, Center, RandomizedLight } from '@react-three/drei'
 import CameraRig from './CameraRig'
 
 import Backdrop from './Backdrop.jsx'
-import Chair from './Chair.jsx'
+import Chair from '../components/ThreeDModels/Chair.jsx'
 
 const CanvasModel = () => {
     return (
