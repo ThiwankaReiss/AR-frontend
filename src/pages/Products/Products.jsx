@@ -3,7 +3,7 @@ import CarouselItm from '../../components/CarouselItm/CarouselItm'
 import { useSnapshot } from 'valtio'
 import state from '../../store'
 import Aos from 'aos'
-import Motion from '../../components/Motion/Motion'
+
 
 const Products = () => {
   useEffect(()=>{
@@ -63,7 +63,7 @@ const Products = () => {
           </div>
 
         </div>
-        <Motion></Motion>
+
       </div>
     </div>
 

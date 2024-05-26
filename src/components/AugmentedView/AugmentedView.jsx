@@ -81,17 +81,7 @@ const AugmentedView = () => {
         }
     }, [isCameraEnabled]);
 
-    // useEffect(() => {
-    //     const getLocation = () => {
-           
-            
-    //     };
-        
-    //     const testIntervalId = setInterval(getLocation, 500);
-
-    //     return () => clearInterval(testIntervalId);
-    // }, []);
-
+   
     
     
     

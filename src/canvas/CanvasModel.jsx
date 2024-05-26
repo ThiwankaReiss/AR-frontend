@@ -19,7 +19,7 @@ const CanvasModel = () => {
            
 
             <Environment preset='city' />
-
+        
             <CameraRig cameraCordinates={[0, 0, 20]}>
                 <Backdrop></Backdrop>
                
