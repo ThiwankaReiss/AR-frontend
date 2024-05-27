@@ -4,7 +4,7 @@ import * as THREE from 'three';
 
 const WoodenChair = () => {
     const { nodes, materials } = useGLTF('/wooden_chair_final.glb');
-    console.log(nodes);
+
     // Define texture properties
     const textureRepeat = 20; // Number of times the texture repeats
     const flowerTexture = useTexture('/colorPickerImage.jpg'); // Replace '/flower_texture.png' with your image path

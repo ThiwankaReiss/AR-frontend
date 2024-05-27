@@ -10,10 +10,10 @@ const AugmentedView = () => {
     const [avgIntensity, setAvgIntensity] = useState(1);
     const [lightX, setLightX] = useState(0);
     const [lightY, setLightY] = useState(0);
-    const [modelSize, setModelSize] = useState(20);
+    const [modelSize, setModelSize] = useState(1);
     function getValue(event) {
         const value = event.target.value;
-        setModelSize(value);
+        setModelSize(value/20);
         console.log(value);
     }
     useEffect(() => {
