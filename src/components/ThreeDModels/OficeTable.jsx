@@ -17,60 +17,7 @@ const OficeTable = () => {
 
     return (
         <group>
-            {/* <mesh
-                castShadow
-                geometry={nodes.frame.geometry}
-                material={materials.FrameMaterial}
-                material-roughness={1}
-                dispose={null}
-                rotation={[0, 0, 0]}
-                position={[0, 0, 0]}
-                scale={[0.1, 0.1, 0.1]}
-            />
-            <mesh
-                castShadow
-                geometry={nodes.holders.geometry}
-                material={materials.HolderMaterial}
-                material-roughness={1}
-                dispose={null}
-                rotation={[0, 0, 0]}
-                position={[0, 0, 0]}
-                scale={[0.1, 0.1, 0.1]}
-            />
-            <mesh
-                castShadow
-                geometry={nodes.seats.geometry}
-                material={materials.SeatsMaterial}
-                material-roughness={1}
-                dispose={null}
-                rotation={[0, 0, 0]}
-                position={[0, 0, 0]}
-                scale={[0.1, 0.1, 0.1]}
-            />
-            <mesh
-                castShadow
-                geometry={nodes.pillows.geometry}
-                material={materials.PillowsMaterial}
-                material-roughness={1}
-                dispose={null}
-                rotation={[0, 0, 0]}
-                position={[0, 0, 0]}
-                scale={[0.1, 0.1, 0.1]}
-            >
-                <meshStandardMaterial
-                    map={flowerTexture}
-                    transparent
-                    roughness={materials.PillowsMaterial.roughness}
-                    metalness={materials.PillowsMaterial.metalness}
-                    normalMap={materials.PillowsMaterial.normalMap}
-                    aoMap={materials.PillowsMaterial.aoMap}
-                    emissive={materials.PillowsMaterial.emissive}
-
-                    opacity={1.0} // Adjust opacity as needed
-                    depthTest={true}
-                    depthWrite={true}
-                />
-            </mesh> */}
+            
             <mesh
                 castShadow
                 geometry={nodes.Top.geometry}

@@ -36,32 +36,3 @@ export default Chair
 
 
 
-
-// <mesh
-//                 castShadow
-//                 geometry={nodes.chair_wooden_baked.geometry}
-//                 material={materials.chair}
-//                 material-roughness={1}
-//                 dispose={null}
-//                 rotation={[-Math.PI / 2, 0, 0]}
-//                 position={[0, 0, 0]}
-//                 scale={[0.1, 0.1, 0.1]}
-//             >
-//                 <meshStandardMaterial
-//                     map={flowerTexture}
-//                     transparent
-//                    // Adjust opacity as needed
-//                     // Enable depth testing for transparency
-//                      // Disable depth writing for transparency
-               
-//                     roughness={materials.chair.roughness}
-//                     metalness={materials.chair.metalness}
-//                     normalMap={materials.chair.normalMap}
-//                     aoMap={materials.chair.aoMap}
-//                     emissive={materials.chair.emissive}
-                   
-//                     opacity={1.0} // Adjust opacity as needed
-//                     depthTest={true}
-//                     depthWrite={true}
-//                 />
-//             </mesh>
