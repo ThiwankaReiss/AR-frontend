@@ -23,8 +23,8 @@ const ARModel = ({ avgIntensity, lightX, lightY ,modelSize}) => {
             <ARCamRig cameraCoordinates={[0,0,modelSize]} >
                 <Center>
                     {/* <Chair/> */}
-                    {/* <WoodenChair/> */}
-                    <Sofa/>
+                    <WoodenChair/>
+                    {/* <Sofa/> */}
                    {/* <OficeTable/> */}
                    {/* <PicnicTable/> */}
                 </Center>

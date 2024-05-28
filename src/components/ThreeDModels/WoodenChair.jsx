@@ -3,11 +3,12 @@ import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
 const WoodenChair = () => {
-    const { nodes, materials } = useGLTF('/wooden_chair_final.glb');
-
+    const { nodes, materials } = useGLTF('/woodChair.glb');
+    console.log(nodes)
+    console.log(materials)
     // Define texture properties
-    const textureRepeat = 20; // Number of times the texture repeats
-    const flowerTexture = useTexture('/colorPickerImage.jpg'); // Replace '/flower_texture.png' with your image path
+    const textureRepeat = 10; // Number of times the texture repeats
+    const flowerTexture = useTexture('src/assets/react.svg'); // Replace '/flower_texture.png' with your image path
 
     // Apply texture repetition
     flowerTexture.wrapS = flowerTexture.wrapT = THREE.RepeatWrapping;
@@ -39,13 +40,39 @@ const WoodenChair = () => {
                     scale={[0.2, 0.2, 0.2]}
                 >
                     <meshStandardMaterial
-                        map={flowerTexture}
-                        transparent
+                        color={'#2828FE'}
                         roughness={materials.CussionMaterial.roughness}
                         metalness={materials.CussionMaterial.metalness}
                         normalMap={materials.CussionMaterial.normalMap}
                         aoMap={materials.CussionMaterial.aoMap}
                         emissive={materials.CussionMaterial.emissive}
+
+                        opacity={1.0} // Adjust opacity as needed
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                </mesh>
+            ))}
+            {nodes.cussionCloth.children.map((child, index) => (
+                <mesh
+                    key={index}
+                    castShadow
+                    geometry={child.geometry}
+                    material={materials.CussionClothMaterial}
+                    material-roughness={1}
+                    dispose={null}
+                    rotation={[-Math.PI / 2, 0, 0]}
+                    position={[0, 0, 0]}
+                    scale={[0.2, 0.2, 0.2]}
+                >
+                    <meshStandardMaterial
+                        map={flowerTexture}
+                        transparent
+                        roughness={materials.CussionClothMaterial.roughness}
+                        metalness={materials.CussionClothMaterial.metalness}
+                        normalMap={materials.CussionClothMaterial.normalMap}
+                        aoMap={materials.CussionClothMaterial.aoMap}
+                        emissive={materials.CussionClothMaterial.emissive}
 
                         opacity={1.0} // Adjust opacity as needed
                         depthTest={true}
