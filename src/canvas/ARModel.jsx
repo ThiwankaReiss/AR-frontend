@@ -24,9 +24,9 @@ const ARModel = ({ avgIntensity, lightX, lightY ,modelSize}) => {
                 <Center>
                     {/* <Chair/> */}
                     {/* <WoodenChair/> */}
-                    {/* <Sofa/> */}
+                    <Sofa/>
                    {/* <OficeTable/> */}
-                   <PicnicTable/>
+                   {/* <PicnicTable/> */}
                 </Center>
             </ARCamRig>
         </Canvas>
