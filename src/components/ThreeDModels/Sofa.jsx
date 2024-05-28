@@ -25,7 +25,7 @@ const Sofa = () => {
                 dispose={null}
                 rotation={[0, 0, 0]}
                 position={[0, 0, 0]}
-                scale={[0.1, 0.1, 0.1]}
+                scale={[5, 5, 5]}
             />
             <mesh
                 castShadow
@@ -35,7 +35,7 @@ const Sofa = () => {
                 dispose={null}
                 rotation={[0, 0, 0]}
                 position={[0, 0, 0]}
-                scale={[0.1, 0.1, 0.1]}
+                scale={[5, 5, 5]}
             />
             <mesh
                 castShadow
@@ -45,7 +45,7 @@ const Sofa = () => {
                 dispose={null}
                 rotation={[0, 0, 0]}
                 position={[0, 0, 0]}
-                scale={[0.1, 0.1, 0.1]}
+                scale={[5, 5, 5]}
             />
             <mesh
                 castShadow
@@ -55,7 +55,7 @@ const Sofa = () => {
                 dispose={null}
                 rotation={[0, 0, 0]}
                 position={[0, 0, 0]}
-                scale={[0.1, 0.1, 0.1]}
+                scale={[5, 5, 5]}
             >
                 <meshStandardMaterial
                     map={flowerTexture}

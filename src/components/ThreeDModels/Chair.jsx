@@ -16,7 +16,7 @@ const Chair = () => {
              dispose={null}
              rotation={[0, 0, 0]}
              position={[0, 0, 0]}
-             scale={[1,0.2,1]}
+             scale={[2,0.4,2]}
             ></mesh>
             <mesh
              castShadow
@@ -26,7 +26,7 @@ const Chair = () => {
              dispose={null}
              rotation={[0, 0, 0]}
              position={[0, 0, 0]}
-             scale={[1,0.05,1]}
+             scale={[2,0.10,2]}
             ></mesh>
         </group>
     )

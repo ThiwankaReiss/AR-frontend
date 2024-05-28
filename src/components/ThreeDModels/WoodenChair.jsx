@@ -24,7 +24,7 @@ const WoodenChair = () => {
                 dispose={null}
                 rotation={[-Math.PI / 2, 0, 0]}
                 position={[0, 0, 0]}
-                scale={[0.1, 0.1, 0.1]}
+                scale={[0.2, 0.2, 0.2]}
             />
             {nodes.cussion.children.map((child, index) => (
                 <mesh
@@ -36,7 +36,7 @@ const WoodenChair = () => {
                     dispose={null}
                     rotation={[-Math.PI / 2, 0, 0]}
                     position={[0, 0, 0]}
-                    scale={[0.1, 0.1, 0.1]}
+                    scale={[0.2, 0.2, 0.2]}
                 >
                     <meshStandardMaterial
                         map={flowerTexture}

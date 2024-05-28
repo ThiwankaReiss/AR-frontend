@@ -7,6 +7,7 @@ import ARCamRig from './ARCamRig';
 import WoodenChair from '../components/ThreeDModels/WoodenChair';
 import Sofa from '../components/ThreeDModels/Sofa';
 import OficeTable from '../components/ThreeDModels/OficeTable';
+import PicnicTable from '../components/ThreeDModels/PicnicTable';
 const ARModel = ({ avgIntensity, lightX, lightY ,modelSize}) => {
     const adjustedIntensity = avgIntensity / 12; // Normalize intensity to range 0-1
     
@@ -24,7 +25,8 @@ const ARModel = ({ avgIntensity, lightX, lightY ,modelSize}) => {
                     {/* <Chair/> */}
                     {/* <WoodenChair/> */}
                     {/* <Sofa/> */}
-                   <OficeTable/>
+                   {/* <OficeTable/> */}
+                   <PicnicTable/>
                 </Center>
             </ARCamRig>
         </Canvas>
