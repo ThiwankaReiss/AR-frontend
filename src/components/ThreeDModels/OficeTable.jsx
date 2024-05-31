@@ -5,14 +5,8 @@ import { useFrame } from '@react-three/fiber';
 import { easing } from 'maath'
 const OficeTable = ({ edit }) => {
     const { nodes, materials } = useGLTF('/office_table.glb');
-
-
-
-    // Define texture properties
-    const textureRepeat = 20; // Number of times the texture repeats
-    const flowerTexture = useTexture('src/assets/react.svg'); // Replace '/flower_texture.png' with your image path
-
-    // Apply texture repetition
+    const textureRepeat = 20; 
+    const flowerTexture = useTexture('src/assets/react.svg');
     flowerTexture.wrapS = flowerTexture.wrapT = THREE.RepeatWrapping;
     flowerTexture.repeat.set(textureRepeat, textureRepeat);
     flowerTexture.flipY = false;
@@ -21,7 +15,6 @@ const OficeTable = ({ edit }) => {
         <group
             scale={[50, 50, 50]}
         >
-
             <mesh
                 castShadow
                 geometry={nodes.Top.geometry}
@@ -106,7 +99,6 @@ const OficeTable = ({ edit }) => {
                         depthWrite={true}
                     />
                 )}
-
             </mesh>
             <mesh
                 castShadow
@@ -134,7 +126,6 @@ const OficeTable = ({ edit }) => {
                         depthWrite={true}
                     />
                 )}
-
             </mesh>
 
             <mesh
@@ -163,10 +154,7 @@ const OficeTable = ({ edit }) => {
                         depthWrite={true}
                     />
                 )}
-
             </mesh>
-
-
         </group>
     );
 };

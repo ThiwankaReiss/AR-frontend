@@ -14,7 +14,7 @@ const Backdrop = () => {
       alphaTest={0.85}
       scale={20}
       rotation={[Math.PI / 2, 0, 0]}
-      position={[0, 0, -5]}
+      position={[0, 0, -6]}
     >
       <RandomizedLight 
         amount={4}

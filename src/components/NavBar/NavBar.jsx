@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useSnapshot } from 'valtio'
 import state from '../../store'
 import Tab from '../Tab/Tab';
-import bootstrap from  'bootstrap/dist/js/bootstrap.min.js'
+import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 export default function NavBar({ navButton }) {
     console.log(navButton);
     const [hoverBtn, sethoverBtn] = useState(null);
@@ -16,7 +16,7 @@ export default function NavBar({ navButton }) {
         setThemeColor(col);
     };
 
-   
+
     useEffect(() => {
         setSelectedBtn(navButton);
         console.log(navButton);
@@ -39,7 +39,7 @@ export default function NavBar({ navButton }) {
                         <ul className="navbar-nav me-auto  mb-2 mb-lg-0 w-100 d-flex justify-content-around">
                             <li className="nav-item nav-bar-itm itm-link">
                                 <Link to="/"
-                                    onClick={() => { setSelectedBtn(1); state.navButton=1 }}
+                                    onClick={() => { setSelectedBtn(1); state.navButton = 1 }}
                                     onMouseEnter={() => { sethoverBtn(1) }}
                                     onMouseLeave={() => { sethoverBtn(null) }}
                                     className={`nav-link ${(hoverBtn || selectedBtn) && (hoverBtn === 1 || selectedBtn == 1) ? 'selected-txt' : 'un-selected-txt'}`}
@@ -50,7 +50,7 @@ export default function NavBar({ navButton }) {
                             </li>
                             <li className="nav-item itm-link">
                                 <Link to="/login"
-                                    onClick={() => { setSelectedBtn(2); state.navButton=2 }}
+                                    onClick={() => { setSelectedBtn(2); state.navButton = 2 }}
                                     onMouseEnter={() => { sethoverBtn(2) }}
                                     onMouseLeave={() => { sethoverBtn(null) }}
                                     className={`nav-link  ${(hoverBtn || selectedBtn) && (hoverBtn === 2 || selectedBtn == 2) ? 'selected-txt' : 'un-selected-txt'}`}
@@ -62,7 +62,7 @@ export default function NavBar({ navButton }) {
                             </li>
                             <li className="nav-item itm-link">
                                 <Link to="/register"
-                                    onClick={() => { setSelectedBtn(3); state.navButton=3  }}
+                                    onClick={() => { setSelectedBtn(3); state.navButton = 3 }}
                                     onMouseEnter={() => { sethoverBtn(3) }}
                                     onMouseLeave={() => { sethoverBtn(null) }}
                                     className={`nav-link  ${(hoverBtn || selectedBtn) && (hoverBtn === 3 || selectedBtn == 3) ? 'selected-txt' : 'un-selected-txt'}`}
@@ -71,27 +71,27 @@ export default function NavBar({ navButton }) {
                                 </Link>
                                 {(hoverBtn || selectedBtn) && (hoverBtn === 3 || selectedBtn == 3) && (<div className='shadow-bellow'></div>)}
                             </li>
-                            
+
                             <li className="nav-item itm-link">
                                 <Link to="/details"
-                                    onClick={() => { setSelectedBtn(4); state.navButton=4  }}
+                                    onClick={() => { setSelectedBtn(4); state.navButton = 4 }}
                                     onMouseEnter={() => { sethoverBtn(4) }}
                                     onMouseLeave={() => { sethoverBtn(null) }}
-                                    className={`nav-link  ${(hoverBtn || selectedBtn) && (hoverBtn === 4 || selectedBtn ==4) ? 'selected-txt' : 'un-selected-txt'}`}
+                                    className={`nav-link  ${(hoverBtn || selectedBtn) && (hoverBtn === 4 || selectedBtn == 4) ? 'selected-txt' : 'un-selected-txt'}`}
                                     aria-current="page">
                                     <i class="bi bi-card-text"></i> Details
                                 </Link>
                                 {(hoverBtn || selectedBtn) && (hoverBtn === 4 || selectedBtn == 4) && (<div className='shadow-bellow'></div>)}
                             </li>
                             <li className="nav-item itm-link">
-                                <a
+                                <Link to="/manage"
                                     onClick={() => { setSelectedBtn(6) }}
                                     onMouseEnter={() => { sethoverBtn(6) }}
                                     onMouseLeave={() => { sethoverBtn(null) }}
                                     className={`nav-link  ${(hoverBtn || selectedBtn) && (hoverBtn === 6 || selectedBtn == 6) ? 'selected-txt' : 'un-selected-txt'}`}
                                     aria-current="page">
-                                    <i class="bi bi-people-fill"></i> Customers
-                                </a>
+                                    <i class="bi bi-people-fill"></i> Manage
+                                </Link>
                                 {(hoverBtn || selectedBtn) && (hoverBtn === 6 || selectedBtn == 6) && (<div className='shadow-bellow'></div>)}
                             </li>
                             <li className="nav-item itm-link">
@@ -117,10 +117,10 @@ export default function NavBar({ navButton }) {
                     <div class="toast-header">
                         <img height="40px" src="src/assets/noticeIcon.png" class="rounded me-2" alt="..." />
                         <strong class="me-auto">Notice</strong>
-                        <button type="button"  class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="toast-body">
-                        Click color icon on top <i class="bi bi-arrow-up"></i> to change page <span className='change-color'>color theme</span> 
+                        Click color icon on top <i class="bi bi-arrow-up"></i> to change page <span className='change-color'>color theme</span>
                     </div>
                 </div>
             </div>

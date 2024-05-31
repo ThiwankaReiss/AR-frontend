@@ -10,6 +10,7 @@ import Register from './pages/Register/Register'
 import Products from './pages/Products/Products'
 import 'aos/dist/aos.css'
 import Detail from './pages/Detail/Detail'
+import Manage from './pages/Manage/Manage'
 
 function App() {
   const snap = useSnapshot(state);
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/details" element={<Detail />} />
+        <Route path="/manage" element={<Manage/>} />
       </Routes>
     </BrowserRouter>
   )

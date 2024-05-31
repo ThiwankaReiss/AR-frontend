@@ -9,6 +9,7 @@ import Sofa from '../components/ThreeDModels/Sofa.jsx'
 import OficeTable from '../components/ThreeDModels/OficeTable.jsx'
 import PicnicTable from '../components/ThreeDModels/PicnicTable.jsx'
 import WoodenChair from '../components/ThreeDModels/WoodenChair.jsx'
+
 const CanvasModel = ({ model }) => {
     return (
 
@@ -24,8 +25,8 @@ const CanvasModel = ({ model }) => {
             <Environment preset='city' />
 
             <CameraRig cameraCordinates={[0, 0, 50]}>
-                <Backdrop></Backdrop>
 
+                
                 <Center>
                     {model && model == "chair" && (
                         <Chair></Chair>
@@ -44,6 +45,7 @@ const CanvasModel = ({ model }) => {
                     )}
                     {/* <Sofa></Sofa> */}
                 </Center>
+                <Backdrop></Backdrop>
             </CameraRig>
 
         </Canvas>
