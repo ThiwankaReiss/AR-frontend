@@ -2,10 +2,9 @@ import React from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
-const Sofa = () => {
+const Sofa = ({ edit }) => {
     const { nodes, materials } = useGLTF('/sofa_baked.glb');
-    console.log(nodes);
-    console.log(materials);
+
     // Define texture properties
     const textureRepeat = 20; // Number of times the texture repeats
     const flowerTexture = useTexture('src/assets/react.svg'); // Replace '/flower_texture.png' with your image path
@@ -27,18 +26,20 @@ const Sofa = () => {
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                <meshStandardMaterial
-                    color={'#2828FE'}
-                    roughness={materials.PillowsMaterial.roughness}
-                    metalness={materials.PillowsMaterial.metalness}
-                    normalMap={materials.PillowsMaterial.normalMap}
-                    aoMap={materials.PillowsMaterial.aoMap}
-                    emissive={materials.PillowsMaterial.emissive}
+                {edit && edit == "edit" && (
+                    <meshStandardMaterial
+                        color={'#2828FE'}
+                        roughness={materials.PillowsMaterial.roughness}
+                        metalness={materials.PillowsMaterial.metalness}
+                        normalMap={materials.PillowsMaterial.normalMap}
+                        aoMap={materials.PillowsMaterial.aoMap}
+                        emissive={materials.PillowsMaterial.emissive}
 
-                    opacity={1.0} // Adjust opacity as needed
-                    depthTest={true}
-                    depthWrite={true}
-                />
+                        opacity={1.0} // Adjust opacity as needed
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                )}
             </mesh>
             <mesh
                 castShadow
@@ -50,19 +51,21 @@ const Sofa = () => {
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                <meshStandardMaterial
-                    map={flowerTexture}
-                    transparent
-                    roughness={materials.PillowsMaterial.roughness}
-                    metalness={materials.PillowsMaterial.metalness}
-                    normalMap={materials.PillowsMaterial.normalMap}
-                    aoMap={materials.PillowsMaterial.aoMap}
-                    emissive={materials.PillowsMaterial.emissive}
+                {edit && edit == "edit" && (
+                    <meshStandardMaterial
+                        map={flowerTexture}
+                        transparent
+                        roughness={materials.PillowsMaterial.roughness}
+                        metalness={materials.PillowsMaterial.metalness}
+                        normalMap={materials.PillowsMaterial.normalMap}
+                        aoMap={materials.PillowsMaterial.aoMap}
+                        emissive={materials.PillowsMaterial.emissive}
 
-                    opacity={1.0} // Adjust opacity as needed
-                    depthTest={true}
-                    depthWrite={true}
-                />
+                        opacity={1.0} // Adjust opacity as needed
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                )}
             </mesh>
             <mesh
                 castShadow
@@ -84,18 +87,20 @@ const Sofa = () => {
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                <meshStandardMaterial
-                    color={'#2828FE'}
-                    roughness={materials.SeatsMaterial.roughness}
-                    metalness={materials.SeatsMaterial.metalness}
-                    normalMap={materials.SeatsMaterial.normalMap}
-                    aoMap={materials.SeatsMaterial.aoMap}
-                    emissive={materials.SeatsMaterial.emissive}
+                {edit && edit == "edit" && (
+                    <meshStandardMaterial
+                        color={'#2828FE'}
+                        roughness={materials.SeatsMaterial.roughness}
+                        metalness={materials.SeatsMaterial.metalness}
+                        normalMap={materials.SeatsMaterial.normalMap}
+                        aoMap={materials.SeatsMaterial.aoMap}
+                        emissive={materials.SeatsMaterial.emissive}
 
-                    opacity={1.0} // Adjust opacity as needed
-                    depthTest={true}
-                    depthWrite={true}
-                />
+                        opacity={1.0} // Adjust opacity as needed
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                )}
             </mesh>
             <mesh
                 castShadow
@@ -107,19 +112,21 @@ const Sofa = () => {
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                <meshStandardMaterial
-                    map={flowerTexture}
-                    transparent
-                    roughness={materials.SeatsClothMaterial.roughness}
-                    metalness={materials.SeatsClothMaterial.metalness}
-                    normalMap={materials.SeatsClothMaterial.normalMap}
-                    aoMap={materials.SeatsClothMaterial.aoMap}
-                    emissive={materials.SeatsClothMaterial.emissive}
+                {edit && edit == "edit" && (
+                    <meshStandardMaterial
+                        map={flowerTexture}
+                        transparent
+                        roughness={materials.SeatsClothMaterial.roughness}
+                        metalness={materials.SeatsClothMaterial.metalness}
+                        normalMap={materials.SeatsClothMaterial.normalMap}
+                        aoMap={materials.SeatsClothMaterial.aoMap}
+                        emissive={materials.SeatsClothMaterial.emissive}
 
-                    opacity={1.0} // Adjust opacity as needed
-                    depthTest={true}
-                    depthWrite={true}
-                />
+                        opacity={1.0} // Adjust opacity as needed
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                )}
             </mesh>
             <mesh
                 castShadow
@@ -131,18 +138,20 @@ const Sofa = () => {
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                <meshStandardMaterial
-                    color={'#2828FE'}
-                    roughness={materials.PillowsMaterial.roughness}
-                    metalness={materials.PillowsMaterial.metalness}
-                    normalMap={materials.PillowsMaterial.normalMap}
-                    aoMap={materials.PillowsMaterial.aoMap}
-                    emissive={materials.PillowsMaterial.emissive}
+                {edit && edit == "edit" && (
+                    <meshStandardMaterial
+                        color={'#2828FE'}
+                        roughness={materials.PillowsMaterial.roughness}
+                        metalness={materials.PillowsMaterial.metalness}
+                        normalMap={materials.PillowsMaterial.normalMap}
+                        aoMap={materials.PillowsMaterial.aoMap}
+                        emissive={materials.PillowsMaterial.emissive}
 
-                    opacity={1.0} // Adjust opacity as needed
-                    depthTest={true}
-                    depthWrite={true}
-                />
+                        opacity={1.0} // Adjust opacity as needed
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                )}
             </mesh>
             <mesh
                 castShadow
@@ -154,19 +163,21 @@ const Sofa = () => {
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                <meshStandardMaterial
-                    map={flowerTexture}
-                    transparent
-                    roughness={materials.PillowsClothMaterial.roughness}
-                    metalness={materials.PillowsClothMaterial.metalness}
-                    normalMap={materials.PillowsClothMaterial.normalMap}
-                    aoMap={materials.PillowsClothMaterial.aoMap}
-                    emissive={materials.PillowsClothMaterial.emissive}
+                {edit && edit == "edit" && (
+                    <meshStandardMaterial
+                        map={flowerTexture}
+                        transparent
+                        roughness={materials.PillowsClothMaterial.roughness}
+                        metalness={materials.PillowsClothMaterial.metalness}
+                        normalMap={materials.PillowsClothMaterial.normalMap}
+                        aoMap={materials.PillowsClothMaterial.aoMap}
+                        emissive={materials.PillowsClothMaterial.emissive}
 
-                    opacity={1.0} // Adjust opacity as needed
-                    depthTest={true}
-                    depthWrite={true}
-                />
+                        opacity={1.0} // Adjust opacity as needed
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                )}
             </mesh>
         </group>
     );

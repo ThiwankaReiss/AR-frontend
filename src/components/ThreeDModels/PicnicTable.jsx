@@ -2,10 +2,9 @@ import React from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
-const PicnicTable = () => {
+const PicnicTable = ({ edit }) => {
     const { nodes, materials } = useGLTF('/PicnicWoodTable.glb');
-    console.log(nodes);
-    console.log(materials);
+
     // Define texture properties
     const textureRepeat = 20; // Number of times the texture repeats
     const flowerTexture = useTexture('src/assets/react.svg'); // Replace '/flower_texture.png' with your image path
@@ -30,18 +29,21 @@ const PicnicTable = () => {
                 position={[0, 0, 0]}
                 scale={[0.001, 0.001, 0.001]}
             >
-                <meshStandardMaterial
-                    color={'#FF9F00'}
-                    roughness={materials.TableMaterial.roughness}
-                    metalness={materials.TableMaterial.metalness}
-                    normalMap={materials.TableMaterial.normalMap}
-                    aoMap={materials.TableMaterial.aoMap}
-                    emissive={materials.TableMaterial.emissive}
+                {edit && edit == "edit" && (
+                    <meshStandardMaterial
+                        color={'#FF9F00'}
+                        roughness={materials.TableMaterial.roughness}
+                        metalness={materials.TableMaterial.metalness}
+                        normalMap={materials.TableMaterial.normalMap}
+                        aoMap={materials.TableMaterial.aoMap}
+                        emissive={materials.TableMaterial.emissive}
 
-                    opacity={1.0} // Adjust opacity as needed
-                    depthTest={true}
-                    depthWrite={true}
-                />
+                        opacity={1.0} // Adjust opacity as needed
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                )}
+
             </mesh>
             <mesh
                 castShadow
@@ -53,20 +55,22 @@ const PicnicTable = () => {
                 position={[0, 0, 0]}
                 scale={[0.001, 0.001, 0.001]}
             >
-                <meshStandardMaterial
-                    map={flowerTexture}
-                    transparent
-                    roughness={materials.TableClothMaterial.roughness}
-                    metalness={materials.TableClothMaterial.metalness}
-                    normalMap={materials.TableClothMaterial.normalMap}
-                    aoMap={materials.TableClothMaterial.aoMap}
-                    emissive={materials.TableClothMaterial.emissive}
+                {edit && edit == "edit" && (
+                    <meshStandardMaterial
+                        map={flowerTexture}
+                        transparent
+                        roughness={materials.TableClothMaterial.roughness}
+                        metalness={materials.TableClothMaterial.metalness}
+                        normalMap={materials.TableClothMaterial.normalMap}
+                        aoMap={materials.TableClothMaterial.aoMap}
+                        emissive={materials.TableClothMaterial.emissive}
 
-                    opacity={1.0} // Adjust opacity as needed
-                    depthTest={true}
-                    depthWrite={true}
-                />
-                
+                        opacity={1.0} // Adjust opacity as needed
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                )}
+
             </mesh>
 
         </group>

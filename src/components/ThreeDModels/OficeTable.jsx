@@ -3,10 +3,9 @@ import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { easing } from 'maath'
-const OficeTable = () => {
+const OficeTable = ({ edit }) => {
     const { nodes, materials } = useGLTF('/office_table.glb');
-    console.log(nodes);
-    console.log(materials);
+
 
 
     // Define texture properties
@@ -63,20 +62,23 @@ const OficeTable = () => {
                 position={[0.105, -0.045, 0]}
                 scale={[0.1, 0.1, 0.1]}
             >
-                <meshStandardMaterial
+                {edit && edit == "edit" && (
+                    <meshStandardMaterial
 
-                    color={'#2828FE'}
+                        color={'#2828FE'}
 
-                    roughness={materials.TopCusMaterial.roughness}
-                    metalness={materials.TopCusMaterial.metalness}
-                    normalMap={materials.TopCusMaterial.normalMap}
-                    aoMap={materials.TopCusMaterial.aoMap}
-                    emissive={materials.TopCusMaterial.emissive}
+                        roughness={materials.TopCusMaterial.roughness}
+                        metalness={materials.TopCusMaterial.metalness}
+                        normalMap={materials.TopCusMaterial.normalMap}
+                        aoMap={materials.TopCusMaterial.aoMap}
+                        emissive={materials.TopCusMaterial.emissive}
 
-                    opacity={1.0} // Adjust opacity as needed
-                    depthTest={true}
-                    depthWrite={true}
-                />
+                        opacity={1.0} // Adjust opacity as needed
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                )}
+
             </mesh>
             <mesh
                 castShadow
@@ -88,20 +90,23 @@ const OficeTable = () => {
                 position={[0.105, -0.045, 0]}
                 scale={[0.1, 0.1, 0.1]}
             >
-                <meshStandardMaterial
+                {edit && edit == "edit" && (
+                    <meshStandardMaterial
 
-                    transparent
-                    map={flowerTexture}
-                    roughness={materials.TopCusClothMaterial.roughness}
-                    metalness={materials.TopCusClothMaterial.metalness}
-                    normalMap={materials.TopCusClothMaterial.normalMap}
-                    aoMap={materials.TopCusClothMaterial.aoMap}
-                    emissive={materials.TopCusClothMaterial.emissive}
+                        transparent
+                        map={flowerTexture}
+                        roughness={materials.TopCusClothMaterial.roughness}
+                        metalness={materials.TopCusClothMaterial.metalness}
+                        normalMap={materials.TopCusClothMaterial.normalMap}
+                        aoMap={materials.TopCusClothMaterial.aoMap}
+                        emissive={materials.TopCusClothMaterial.emissive}
 
-                    opacity={1.0} // Adjust opacity as needed
-                    depthTest={true}
-                    depthWrite={true}
-                />
+                        opacity={1.0} // Adjust opacity as needed
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                )}
+
             </mesh>
             <mesh
                 castShadow
@@ -113,20 +118,23 @@ const OficeTable = () => {
                 position={[0.105, -0.045, 0]}
                 scale={[0.1, 0.1, 0.1]}
             >
-                <meshStandardMaterial
+                {edit && edit == "edit" && (
+                    <meshStandardMaterial
 
-                    color={'#FF9F00'}
+                        color={'#FF9F00'}
 
-                    roughness={materials.BtmCusMaterial.roughness}
-                    metalness={materials.BtmCusMaterial.metalness}
-                    normalMap={materials.BtmCusMaterial.normalMap}
-                    aoMap={materials.BtmCusMaterial.aoMap}
-                    emissive={materials.BtmCusMaterial.emissive}
+                        roughness={materials.BtmCusMaterial.roughness}
+                        metalness={materials.BtmCusMaterial.metalness}
+                        normalMap={materials.BtmCusMaterial.normalMap}
+                        aoMap={materials.BtmCusMaterial.aoMap}
+                        emissive={materials.BtmCusMaterial.emissive}
 
-                    opacity={1.0} // Adjust opacity as needed
-                    depthTest={true}
-                    depthWrite={true}
-                />
+                        opacity={1.0} // Adjust opacity as needed
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                )}
+
             </mesh>
 
             <mesh
@@ -139,20 +147,23 @@ const OficeTable = () => {
                 position={[0.105, -0.045, 0]}
                 scale={[0.1, 0.1, 0.1]}
             >
-                <meshStandardMaterial
+                {edit && edit == "edit" && (
+                    <meshStandardMaterial
 
-                    map={flowerTexture}
-                    transparent
-                    roughness={materials.BtmCusClothMaterial.roughness}
-                    metalness={materials.BtmCusClothMaterial.metalness}
-                    normalMap={materials.BtmCusClothMaterial.normalMap}
-                    aoMap={materials.BtmCusClothMaterial.aoMap}
-                    emissive={materials.BtmCusClothMaterial.emissive}
+                        map={flowerTexture}
+                        transparent
+                        roughness={materials.BtmCusClothMaterial.roughness}
+                        metalness={materials.BtmCusClothMaterial.metalness}
+                        normalMap={materials.BtmCusClothMaterial.normalMap}
+                        aoMap={materials.BtmCusClothMaterial.aoMap}
+                        emissive={materials.BtmCusClothMaterial.emissive}
 
-                    opacity={1.0} // Adjust opacity as needed
-                    depthTest={true}
-                    depthWrite={true}
-                />
+                        opacity={1.0} // Adjust opacity as needed
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                )}
+
             </mesh>
 
 
