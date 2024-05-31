@@ -108,7 +108,7 @@ export default function NavBar({ navButton }) {
                         </ul>
                     </div>
                     <div >
-                        <Tab getColor={getThemeColor} currentColor={themeColor} text=""></Tab>
+                        <Tab getColor={getThemeColor} currentColor={themeColor} text="" top="top"></Tab>
                     </div>
                 </div>
             </nav>
