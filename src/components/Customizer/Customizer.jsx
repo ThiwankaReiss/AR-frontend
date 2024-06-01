@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import CanvasModel from '../../canvas/CanvasModel'
 import DropDown from '../DropDown/DropDown'
 import Tab from '../Tab/Tab'
-
+import ImageUploader from '../ImageUploader/ImageUploader'
+import PicUpload from '../PicUpload/PicUpload'
 const Customizer = () => {
     const [activeTab, setActiveTab] = useState(null);
     const [geos, setGeos] = useState([
@@ -39,6 +40,7 @@ const Customizer = () => {
                     activeTab && activeTab === "top" && (
                         <>
                             <Tab setColor={getTopColor} currentColor={topColor} text="Top Color" />
+                            
                         </>
                     )
                 }
@@ -58,6 +60,7 @@ const Customizer = () => {
                                         func:setGeos,
                                         edit:index
                                     }} currentColor={data.color} text="Top Color" />
+                                    <PicUpload getImage={null} setShowImage={null} showImage={null} text="Upload Image (front)"></PicUpload>
                                 </>
                             )
                         }
@@ -66,7 +69,7 @@ const Customizer = () => {
                 ))}
             </div>
             <div className="col-12">
-                
+                <ImageUploader/>
             </div>
         </>
     );
