@@ -1,9 +1,18 @@
 import React from 'react';
 import { SketchPicker } from 'react-color';
 
-const ColorPicker = ({ getColor, currentColor, top }) => {
+const ColorPicker = ({ setColor, currentColor, top }) => {
   const handleChange = (color) => {
-    getColor(color.hex);
+    setColor(color.hex);
+  };
+
+  const handleEdit = (color) => {
+    const newGeos = [...setColor.array];
+    newGeos[setColor.edit] = {
+      ...newGeos[setColor.edit],
+      color: color.hex
+    };
+    setColor.func(newGeos);
   };
 
   return (
@@ -23,7 +32,7 @@ const ColorPicker = ({ getColor, currentColor, top }) => {
 
               color={currentColor}
               disableAlpha
-              onChange={handleChange}
+              onChange={handleEdit}
             />
           </div>
         )}

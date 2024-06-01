@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import ColorPicker from '../ColorPicker/ColorPicker';
-const Tab = ({ getColor, currentColor, text ,top }) => {
+const Tab = ({ setColor, currentColor, text ,top }) => {
     const [showColorPicker, setShowColorPicker] = useState(false);
     const colorPickerRef = useRef(null);
     
@@ -37,7 +37,7 @@ const Tab = ({ getColor, currentColor, text ,top }) => {
                 </div>
                 {showColorPicker && (
                     <div>
-                        <ColorPicker getColor={getColor} currentColor={currentColor} top={top}/>
+                        <ColorPicker setColor={setColor} currentColor={currentColor} top={top}/>
                     </div>
                 )}
             </div>
