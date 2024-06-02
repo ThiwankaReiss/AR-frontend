@@ -14,26 +14,45 @@ const PicUpload = ({ text, getImage, currentImage, setShowImage, showImage }) =>
         setImage(file);
         setShowImagePicker(true);
     };
-
     const uploadImage = async () => {
         const formData = new FormData();
-        formData.append('image', image);
-        setShowImage(false);
-        axios.post('http://localhost:8080/upload', formData)
-            .then(function (response) {
-                console.log(response);
-                const myArray = response.data.url.split("id=");
-                console.log(myArray[1]);
-                getImage(myArray[1]);
-                
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-            .finally(() => {
-                setShowImage(true); // Set uploading status to false after upload completion or failure
+        formData.append('file', image);
+        getImage.func(prevGeos => {
+            const newGeosk = [...prevGeos];
+            newGeosk[getImage.edit] = { ...newGeosk[getImage.edit], visible: false };
+            return newGeosk;
+        });
+
+        // setShowImage(false);
+        try {
+            const response = await axios.post('http://localhost:8080/images/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             });
-    }
+           
+
+            getImage.func(prevGeos => {
+                const newGeos = [...prevGeos];
+                newGeos[getImage.edit] = { ...newGeos[getImage.edit], texture: response.data };
+                return newGeos;
+            });
+            
+            getImage.func(prevGeos => {
+                const newGeosj = [...prevGeos];
+                newGeosj[getImage.edit] = { ...newGeosj[getImage.edit], visible: true };
+                return newGeosj;
+            });
+          
+          
+            // setShowImage(true);
+
+           
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+    };
 
     const imageContainerRef = useRef(null);
     useEffect(() => {

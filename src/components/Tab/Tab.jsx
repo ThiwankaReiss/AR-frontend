@@ -4,7 +4,7 @@ import ColorPicker from '../ColorPicker/ColorPicker';
 const Tab = ({ setColor, currentColor, text ,top }) => {
     const [showColorPicker, setShowColorPicker] = useState(false);
     const colorPickerRef = useRef(null);
-    
+   
     useEffect(() => {
         function handleClickOutside(event) {
             if (colorPickerRef.current && !colorPickerRef.current.contains(event.target)) {
