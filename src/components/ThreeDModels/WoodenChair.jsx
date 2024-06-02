@@ -2,7 +2,7 @@ import React from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
-const WoodenChair = ({ edit }) => {
+const WoodenChair = ({ edit ,geos}) => {
     const { nodes, materials } = useGLTF('/woodChair.glb');
 
     // Define texture properties
@@ -13,6 +13,8 @@ const WoodenChair = ({ edit }) => {
     flowerTexture.wrapS = flowerTexture.wrapT = THREE.RepeatWrapping;
     flowerTexture.repeat.set(textureRepeat, textureRepeat);
     flowerTexture.flipY = false;
+
+    
 
     return (
         <group>

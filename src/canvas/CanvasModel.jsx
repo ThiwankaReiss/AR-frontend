@@ -10,7 +10,7 @@ import OficeTable from '../components/ThreeDModels/OficeTable.jsx'
 import PicnicTable from '../components/ThreeDModels/PicnicTable.jsx'
 import WoodenChair from '../components/ThreeDModels/WoodenChair.jsx'
 
-const CanvasModel = ({ model }) => {
+const CanvasModel = ({ model ,geos,edit,imgArray}) => {
     return (
 
         <Canvas
@@ -29,19 +29,19 @@ const CanvasModel = ({ model }) => {
                 
                 <Center>
                     {model && model == "chair" && (
-                        <Chair></Chair>
+                        <Chair geos={geos} edit={edit}></Chair>
                     )}
                     {model && model == "sofa" && (
-                        <Sofa></Sofa>
+                        <Sofa geos={geos} edit={edit} imgArray={imgArray}></Sofa>
                     )}
                     {model && model == "officeTable" && (
-                        <OficeTable></OficeTable>
+                        <OficeTable geos={geos} edit={edit}></OficeTable>
                     )}
                     {model && model == "picnicTable" && (
-                        <PicnicTable></PicnicTable>
+                        <PicnicTable geos={geos} edit={edit}></PicnicTable>
                     )}
                     {model && model == "woodenChair" && (
-                        <WoodenChair></WoodenChair>
+                        <WoodenChair geos={geos} edit={edit}></WoodenChair>
                     )}
                     {/* <Sofa></Sofa> */}
                 </Center>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
-const PicnicTable = ({ edit }) => {
+const PicnicTable = ({ edit,geos }) => {
     const { nodes, materials } = useGLTF('/PicnicWoodTable.glb');
 
     // Define texture properties

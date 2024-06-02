@@ -2,17 +2,30 @@ import React from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
-const Sofa = ({ edit }) => {
+const Sofa = ({ edit,imgArray,geos }) => {
     const { nodes, materials } = useGLTF('/sofa_baked.glb');
 
     // Define texture properties
-    const textureRepeat = 20; // Number of times the texture repeats
-    const flowerTexture = useTexture('src/assets/react.svg'); // Replace '/flower_texture.png' with your image path
 
-    // Apply texture repetition
-    flowerTexture.wrapS = flowerTexture.wrapT = THREE.RepeatWrapping;
-    flowerTexture.repeat.set(textureRepeat, textureRepeat);
-    flowerTexture.flipY = false;
+    // Number of times the texture repeats
+    if(imgArray!=null){
+       
+        var pillowTexture = useTexture(imgArray[0]);
+        pillowTexture.wrapS = pillowTexture.wrapT = THREE.RepeatWrapping;
+        pillowTexture.repeat.set(geos[0].repeate, geos[0].repeate);
+        pillowTexture.flipY = false;
+
+        var seatTexture = useTexture(imgArray[1]);
+        seatTexture.wrapS = pillowTexture.wrapT = THREE.RepeatWrapping;
+        seatTexture.repeat.set(geos[1].repeate, geos[1].repeate);
+        seatTexture.flipY = false;
+
+        var frameTexture = useTexture(imgArray[2]);
+        frameTexture.wrapS = frameTexture.wrapT = THREE.RepeatWrapping;
+        frameTexture.repeat.set(geos[2].repeate, geos[2].repeate);
+        frameTexture.flipY = false;
+    }
+    
 
     return (
         <group>
@@ -29,11 +42,11 @@ const Sofa = ({ edit }) => {
                 {edit && edit == "edit" && (
                     <meshStandardMaterial
                         color={'#2828FE'}
-                        roughness={materials.PillowsMaterial.roughness}
-                        metalness={materials.PillowsMaterial.metalness}
-                        normalMap={materials.PillowsMaterial.normalMap}
-                        aoMap={materials.PillowsMaterial.aoMap}
-                        emissive={materials.PillowsMaterial.emissive}
+                        roughness={materials.FrameMaterial.roughness}
+                        metalness={materials.FrameMaterial.metalness}
+                        normalMap={materials.FrameMaterial.normalMap}
+                        aoMap={materials.FrameMaterial.aoMap}
+                        emissive={materials.FrameMaterial.emissive}
 
                         opacity={1.0} // Adjust opacity as needed
                         depthTest={true}
@@ -53,13 +66,13 @@ const Sofa = ({ edit }) => {
             >
                 {edit && edit == "edit" && (
                     <meshStandardMaterial
-                        map={flowerTexture}
+                        map={frameTexture}
                         transparent
-                        roughness={materials.PillowsMaterial.roughness}
-                        metalness={materials.PillowsMaterial.metalness}
-                        normalMap={materials.PillowsMaterial.normalMap}
-                        aoMap={materials.PillowsMaterial.aoMap}
-                        emissive={materials.PillowsMaterial.emissive}
+                        roughness={materials.FrameClothMaterial.roughness}
+                        metalness={materials.FrameClothMaterial.metalness}
+                        normalMap={materials.FrameClothMaterial.normalMap}
+                        aoMap={materials.FrameClothMaterial.aoMap}
+                        emissive={materials.FrameClothMaterial.emissive}
 
                         opacity={1.0} // Adjust opacity as needed
                         depthTest={true}
@@ -114,7 +127,7 @@ const Sofa = ({ edit }) => {
             >
                 {edit && edit == "edit" && (
                     <meshStandardMaterial
-                        map={flowerTexture}
+                        map={seatTexture}
                         transparent
                         roughness={materials.SeatsClothMaterial.roughness}
                         metalness={materials.SeatsClothMaterial.metalness}
@@ -165,7 +178,7 @@ const Sofa = ({ edit }) => {
             >
                 {edit && edit == "edit" && (
                     <meshStandardMaterial
-                        map={flowerTexture}
+                        map={pillowTexture}
                         transparent
                         roughness={materials.PillowsClothMaterial.roughness}
                         metalness={materials.PillowsClothMaterial.metalness}

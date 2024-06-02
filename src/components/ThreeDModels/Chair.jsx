@@ -2,7 +2,7 @@ import React from 'react'
 import { easing } from 'maath'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF, useTexture } from '@react-three/drei';
-const Chair = () => {
+const Chair = ({geos}) => {
     const { nodes, materials } = useGLTF('/Chair1.glb');
     useFrame((state, delta) => easing.dampC(materials.CusionMaterial.color, '#0459BC', 0.25, delta));
     useFrame((state, delta) => easing.dampC(materials.FrameMaterial.color, '#e0e5e5', 0.25, delta));

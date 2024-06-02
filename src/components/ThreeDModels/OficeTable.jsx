@@ -3,7 +3,7 @@ import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { easing } from 'maath'
-const OficeTable = ({ edit }) => {
+const OficeTable = ({ edit ,geos}) => {
     const { nodes, materials } = useGLTF('/office_table.glb');
     const textureRepeat = 20; 
     const flowerTexture = useTexture('src/assets/react.svg');

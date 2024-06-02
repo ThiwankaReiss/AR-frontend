@@ -6,18 +6,26 @@ import Tab from '../Tab/Tab'
 import ImageUploader from '../ImageUploader/ImageUploader'
 import PicUpload from '../PicUpload/PicUpload'
 import ImgScaler from '../ImgScaler/ImgScaler'
+import SofaSorter from '../Sorters/SofaSorter'
 const Customizer = () => {
     const [activeTab, setActiveTab] = useState(null);
     const [geos, setGeos] = useState([
         {
-            name: "Seat Top",
+            name: "Pillow",
             color: "#0000ff",
             texture: 4,
             repeate: 20,
             visible: true
         },
         {
-            name: "Seat Bottom",
+            name: "Seat",
+            color: "#0000ff",
+            texture: 6,
+            repeate: 20,
+            visible: true
+        },
+        {
+            name: "Frame",
             color: "#0000ff",
             texture: 6,
             repeate: 20,
@@ -70,7 +78,7 @@ const Customizer = () => {
                 ))}
             </div>
             <div className="col-lg-7 m-3 canvas-container ">
-                <CanvasModel model={"sofa"} />
+                <SofaSorter geos={geos}></SofaSorter>
             </div>
 
             <div className="col-12">
