@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import CanvasModel from '../../canvas/CanvasModel'
 import DropDown from '../DropDown/DropDown'
 import Tab from '../Tab/Tab'
-import ImageUploader from '../ImageUploader/ImageUploader'
+
 import PicUpload from '../PicUpload/PicUpload'
 import ImgScaler from '../ImgScaler/ImgScaler'
-import SofaSorter from '../Sorters/SofaSorter'
+import Sorter from '../Sorters/Sorter'
 const Customizer = () => {
     const [activeTab, setActiveTab] = useState(null);
     const [geos, setGeos] = useState([
@@ -47,7 +47,7 @@ const Customizer = () => {
 
     return (
         <>
-            <div className="col-lg-4 m-3 customizer-container ">
+            <div className="col-lg-4 m-3 customizer-container card">
                 {geos.map((data, index) => (
                     <>
                         <DropDown text={data.name} adjustActiveTab={adjustActiveTab} tab={data.name} />
@@ -78,12 +78,9 @@ const Customizer = () => {
                 ))}
             </div>
             <div className="col-lg-7 m-3 canvas-container ">
-                <SofaSorter geos={geos}></SofaSorter>
+                <Sorter geos={geos}></Sorter>
             </div>
 
-            <div className="col-12">
-                <ImageUploader />
-            </div>
         </>
     );
 }

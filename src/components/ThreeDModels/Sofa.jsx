@@ -2,30 +2,93 @@ import React from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
-const Sofa = ({ edit,imgArray,geos }) => {
+const Sofa = ({ edit, imgArray, geos }) => {
     const { nodes, materials } = useGLTF('/sofa_baked.glb');
 
-    // Define texture properties
+    const textures = {
+        Pillow: null,
+        Seat: null,
+        Frame: null,
+    };
 
-    // Number of times the texture repeats
-    if(imgArray!=null){
-       
-        var pillowTexture = useTexture(imgArray[0]);
-        pillowTexture.wrapS = pillowTexture.wrapT = THREE.RepeatWrapping;
-        pillowTexture.repeat.set(geos[0].repeate, geos[0].repeate);
-        pillowTexture.flipY = false;
+    const colors = {
+        Pillow: null,
+        Seat: null,
+        Frame: null,
+    };
 
-        var seatTexture = useTexture(imgArray[1]);
-        seatTexture.wrapS = pillowTexture.wrapT = THREE.RepeatWrapping;
-        seatTexture.repeat.set(geos[1].repeate, geos[1].repeate);
-        seatTexture.flipY = false;
+    // Helper function to set texture properties
+    const setTextureProperties = (type, index) => {
+        const texture = useTexture(imgArray[index].image);
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(geos[index].repeate, geos[index].repeate);
+        texture.flipY = false;
+        return texture;
+    };
 
-        var frameTexture = useTexture(imgArray[2]);
-        frameTexture.wrapS = frameTexture.wrapT = THREE.RepeatWrapping;
-        frameTexture.repeat.set(geos[2].repeate, geos[2].repeate);
-        frameTexture.flipY = false;
+    if (imgArray) {
+        imgArray.forEach((img, index) => {
+            if (img.image) {
+                if (img.type === 'Pillow') {
+                    textures.Pillow = setTextureProperties('Pillow', index);
+                } else if (img.type === 'Seat') {
+                    textures.Seat = setTextureProperties('Seat', index);
+                } else if (img.type === 'Frame') {
+                    textures.Frame = setTextureProperties('Frame', index);
+                }
+            }
+        });
     }
-    
+
+    if (geos) {
+        geos.forEach((geo) => {
+            if (geo.color) {
+                if (geo.name === 'Pillow') {
+                    colors.Pillow = geo.color;
+                } else if (geo.name === 'Seat') {
+                    colors.Seat = geo.color;
+                } else if (geo.name === 'Frame') {
+                    colors.Frame = geo.color;
+                }
+            }
+        });
+    }
+
+    const renderMaterial = (type, baseMaterial, color, texture) => {
+        if (edit === "edit") {
+            if (color) {
+                return (
+                    <meshStandardMaterial
+                        color={color}
+                        roughness={baseMaterial.roughness}
+                        metalness={baseMaterial.metalness}
+                        normalMap={baseMaterial.normalMap}
+                        aoMap={baseMaterial.aoMap}
+                        emissive={baseMaterial.emissive}
+                        opacity={1.0}
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                );
+            } else if (texture) {
+                return (
+                    <meshStandardMaterial
+                        map={texture}
+                        transparent
+                        roughness={baseMaterial.roughness}
+                        metalness={baseMaterial.metalness}
+                        normalMap={baseMaterial.normalMap}
+                        aoMap={baseMaterial.aoMap}
+                        emissive={baseMaterial.emissive}
+                        opacity={1.0}
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                );
+            }
+        }
+        return null;
+    };
 
     return (
         <group>
@@ -33,164 +96,76 @@ const Sofa = ({ edit,imgArray,geos }) => {
                 castShadow
                 geometry={nodes.frame.geometry}
                 material={materials.FrameMaterial}
-                material-roughness={1}
                 dispose={null}
                 rotation={[0, 0, 0]}
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                {edit && edit == "edit" && (
-                    <meshStandardMaterial
-                        color={'#2828FE'}
-                        roughness={materials.FrameMaterial.roughness}
-                        metalness={materials.FrameMaterial.metalness}
-                        normalMap={materials.FrameMaterial.normalMap}
-                        aoMap={materials.FrameMaterial.aoMap}
-                        emissive={materials.FrameMaterial.emissive}
-
-                        opacity={1.0} // Adjust opacity as needed
-                        depthTest={true}
-                        depthWrite={true}
-                    />
-                )}
+                {renderMaterial('Frame', materials.FrameMaterial, colors.Frame, textures.Frame)}
             </mesh>
             <mesh
                 castShadow
                 geometry={nodes.frameCloth.geometry}
                 material={materials.FrameClothMaterial}
-                material-roughness={1}
                 dispose={null}
                 rotation={[0, 0, 0]}
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                {edit && edit == "edit" && (
-                    <meshStandardMaterial
-                        map={frameTexture}
-                        transparent
-                        roughness={materials.FrameClothMaterial.roughness}
-                        metalness={materials.FrameClothMaterial.metalness}
-                        normalMap={materials.FrameClothMaterial.normalMap}
-                        aoMap={materials.FrameClothMaterial.aoMap}
-                        emissive={materials.FrameClothMaterial.emissive}
-
-                        opacity={1.0} // Adjust opacity as needed
-                        depthTest={true}
-                        depthWrite={true}
-                    />
-                )}
+                {renderMaterial('Frame', materials.FrameClothMaterial, null, textures.Frame)}
             </mesh>
             <mesh
                 castShadow
                 geometry={nodes.holders.geometry}
                 material={materials.HolderMaterial}
-                material-roughness={1}
                 dispose={null}
                 rotation={[0, 0, 0]}
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
-            ></mesh>
+            />
             <mesh
                 castShadow
                 geometry={nodes.seats.geometry}
                 material={materials.SeatsMaterial}
-                material-roughness={1}
                 dispose={null}
                 rotation={[0, 0, 0]}
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                {edit && edit == "edit" && (
-                    <meshStandardMaterial
-                        color={'#2828FE'}
-                        roughness={materials.SeatsMaterial.roughness}
-                        metalness={materials.SeatsMaterial.metalness}
-                        normalMap={materials.SeatsMaterial.normalMap}
-                        aoMap={materials.SeatsMaterial.aoMap}
-                        emissive={materials.SeatsMaterial.emissive}
-
-                        opacity={1.0} // Adjust opacity as needed
-                        depthTest={true}
-                        depthWrite={true}
-                    />
-                )}
+                {renderMaterial('Seat', materials.SeatsMaterial, colors.Seat, textures.Seat)}
             </mesh>
             <mesh
                 castShadow
                 geometry={nodes.seatsCloth.geometry}
                 material={materials.SeatsClothMaterial}
-                material-roughness={1}
                 dispose={null}
                 rotation={[0, 0, 0]}
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                {edit && edit == "edit" && (
-                    <meshStandardMaterial
-                        map={seatTexture}
-                        transparent
-                        roughness={materials.SeatsClothMaterial.roughness}
-                        metalness={materials.SeatsClothMaterial.metalness}
-                        normalMap={materials.SeatsClothMaterial.normalMap}
-                        aoMap={materials.SeatsClothMaterial.aoMap}
-                        emissive={materials.SeatsClothMaterial.emissive}
-
-                        opacity={1.0} // Adjust opacity as needed
-                        depthTest={true}
-                        depthWrite={true}
-                    />
-                )}
+                {renderMaterial('Seat', materials.SeatsClothMaterial, null, textures.Seat)}
             </mesh>
             <mesh
                 castShadow
                 geometry={nodes.pillows.geometry}
                 material={materials.PillowsMaterial}
-                material-roughness={1}
                 dispose={null}
                 rotation={[0, 0, 0]}
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                {edit && edit == "edit" && (
-                    <meshStandardMaterial
-                        color={'#2828FE'}
-                        roughness={materials.PillowsMaterial.roughness}
-                        metalness={materials.PillowsMaterial.metalness}
-                        normalMap={materials.PillowsMaterial.normalMap}
-                        aoMap={materials.PillowsMaterial.aoMap}
-                        emissive={materials.PillowsMaterial.emissive}
-
-                        opacity={1.0} // Adjust opacity as needed
-                        depthTest={true}
-                        depthWrite={true}
-                    />
-                )}
+                {renderMaterial('Pillow', materials.PillowsMaterial, colors.Pillow, textures.Pillow)}
             </mesh>
             <mesh
                 castShadow
                 geometry={nodes.pillowsCloth.geometry}
                 material={materials.PillowsClothMaterial}
-                material-roughness={1}
                 dispose={null}
                 rotation={[0, 0, 0]}
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                {edit && edit == "edit" && (
-                    <meshStandardMaterial
-                        map={pillowTexture}
-                        transparent
-                        roughness={materials.PillowsClothMaterial.roughness}
-                        metalness={materials.PillowsClothMaterial.metalness}
-                        normalMap={materials.PillowsClothMaterial.normalMap}
-                        aoMap={materials.PillowsClothMaterial.aoMap}
-                        emissive={materials.PillowsClothMaterial.emissive}
-
-                        opacity={1.0} // Adjust opacity as needed
-                        depthTest={true}
-                        depthWrite={true}
-                    />
-                )}
+                {renderMaterial('Pillow', materials.PillowsClothMaterial, null, textures.Pillow)}
             </mesh>
         </group>
     );

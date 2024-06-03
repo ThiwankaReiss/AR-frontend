@@ -2,18 +2,31 @@ import React from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
-const WoodenChair = ({ edit ,geos}) => {
+const WoodenChair = (edit, imgArray, geos) => {
     const { nodes, materials } = useGLTF('/woodChair.glb');
+    const textures = {
+        Cussion: null
+    };
 
-    // Define texture properties
-    const textureRepeat = 10; // Number of times the texture repeats
-    const flowerTexture = useTexture('src/assets/react.svg'); // Replace '/flower_texture.png' with your image path
-
-    // Apply texture repetition
-    flowerTexture.wrapS = flowerTexture.wrapT = THREE.RepeatWrapping;
-    flowerTexture.repeat.set(textureRepeat, textureRepeat);
-    flowerTexture.flipY = false;
-
+    const colors = {
+        Cussion: null
+    };
+    const setTextureProperties = (type, index) => {
+        const texture = useTexture(imgArray[index].image);
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(geos[index].repeate, geos[index].repeate);
+        texture.flipY = false;
+        return texture;
+    };
+    if (imgArray) {
+        imgArray.forEach((img, index) => {
+            if (img.image) {
+                if (img.type === 'Cussion') {
+                    textures.Cussion = setTextureProperties('Cussion', index);
+                } 
+            }
+        });
+    }
     
 
     return (
