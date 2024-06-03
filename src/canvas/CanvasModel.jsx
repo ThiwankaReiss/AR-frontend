@@ -4,7 +4,7 @@ import { Environment, Center, RandomizedLight } from '@react-three/drei'
 import CameraRig from './CameraRig'
 
 import Backdrop from './Backdrop.jsx'
-import Chair from '../components/ThreeDModels/Chair.jsx'
+
 import Sofa from '../components/ThreeDModels/Sofa.jsx'
 import OficeTable from '../components/ThreeDModels/OficeTable.jsx'
 import PicnicTable from '../components/ThreeDModels/PicnicTable.jsx'
@@ -28,9 +28,7 @@ const CanvasModel = ({ model ,geos,edit,imgArray}) => {
 
                 
                 <Center>
-                    {model && model == "chair" && (
-                        <Chair geos={geos} edit={edit}></Chair>
-                    )}
+                    
                     {model && model == "sofa" && (
                         <Sofa geos={geos} edit={edit} imgArray={imgArray}></Sofa>
                     )}

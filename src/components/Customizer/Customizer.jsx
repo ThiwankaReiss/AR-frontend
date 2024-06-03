@@ -71,8 +71,10 @@ const Customizer = () => {
                 ))}
             </div>
             <div className="col-lg-7 m-3 canvas-container ">
-                <Sorter geos={geos}></Sorter>
+                {/* <Sorter geos={geos}></Sorter> */}
+                <CanvasModel model={"officeTable"}></CanvasModel>
             </div>
+
 
         </>
     );

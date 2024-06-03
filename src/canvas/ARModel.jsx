@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, Center } from '@react-three/drei';
-import Chair from '../components/ThreeDModels/Chair';
+
 import ARCamRig from './ARCamRig';
 import WoodenChair from '../components/ThreeDModels/WoodenChair';
 import Sofa from '../components/ThreeDModels/Sofa';
