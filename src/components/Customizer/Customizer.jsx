@@ -7,24 +7,13 @@ import Tab from '../Tab/Tab'
 import PicUpload from '../PicUpload/PicUpload'
 import ImgScaler from '../ImgScaler/ImgScaler'
 import Sorter from '../Sorters/Sorter'
+import state from '../../store'
+import { useNavigate } from 'react-router-dom'
+import { useSnapshot } from 'valtio'
 const Customizer = () => {
+    const snap = useSnapshot(state);
     const [activeTab, setActiveTab] = useState(null);
-    const [geos, setGeos] = useState([
-        {
-            name: "TopCussion",
-            color: "#0000ff",
-            texture: 4,
-            repeate: 20,
-            visible: true
-        },
-        {
-            name: "BtmCussion",
-            color: "#0000ff",
-            texture: 4,
-            repeate: 20,
-            visible: true
-        }
-    ]);
+    const [geos, setGeos] = useState(snap.geometry.materials);
     const [topColor, setTopColor] = useState('#FF3333');
 
     function adjustActiveTab(tab) {
@@ -71,8 +60,8 @@ const Customizer = () => {
                 ))}
             </div>
             <div className="col-lg-7 m-3 canvas-container ">
-                {/* <Sorter geos={geos}></Sorter> */}
-                <CanvasModel model={"officeTable"}></CanvasModel>
+                <Sorter geos={geos} model={snap.geometry.type}></Sorter>
+                {/* <CanvasModel model={"officeTable"}></CanvasModel> */}
             </div>
 
 

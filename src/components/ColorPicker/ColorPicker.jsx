@@ -2,6 +2,9 @@ import React from 'react';
 import { SketchPicker } from 'react-color';
 
 const ColorPicker = ({ setColor, currentColor, top }) => {
+  if(currentColor==null){
+    currentColor='#0000ff'
+  }
   const handleChange = (color) => {
     setColor(color.hex);
   };

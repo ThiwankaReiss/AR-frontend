@@ -99,7 +99,7 @@ const WoodenChair = ({edit, imgArray, geos}) => {
                     position={[0, 0, 0]}
                     scale={[0.2, 0.2, 0.2]}
                 >
-                    {renderMaterial('Cussion', materials.CussionMaterial, colors.Cussion, textures.Cussion)}
+                    {renderMaterial('Cussion', materials.CussionMaterial, colors.Cussion, null)}
                 </mesh>
             ))}
             {nodes.cussionCloth.children.map((child, index) => (

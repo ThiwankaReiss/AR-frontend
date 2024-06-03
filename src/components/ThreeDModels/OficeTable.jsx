@@ -3,11 +3,11 @@ import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { easing } from 'maath'
-const OficeTable = ({edit, imgArray, geos}) => {
+const OficeTable = ({ edit, imgArray, geos }) => {
     const { nodes, materials } = useGLTF('/office_table.glb');
     const textures = {
-        TopCussion: null,
-        BtmCussion: null
+        TopCusCloth: null,
+        BtmCusCloth: null
     };
 
     const colors = {
@@ -26,9 +26,9 @@ const OficeTable = ({edit, imgArray, geos}) => {
         imgArray.forEach((img, index) => {
             if (img.image) {
                 if (img.type === 'TopCussion') {
-                    textures.TopCussion = setTextureProperties('TopCussion', index);
+                    textures.TopCusCloth = setTextureProperties('TopCussion', index);
                 } else if (img.type === 'BtmCussion') {
-                    textures.BtmCussion = setTextureProperties('BtmCussion', index);
+                    textures.BtmCusCloth = setTextureProperties('BtmCussion', index);
                 }
             }
         });
@@ -41,7 +41,7 @@ const OficeTable = ({edit, imgArray, geos}) => {
                     colors.TopCussion = geo.color;
                 } else if (geo.name === 'BtmCussion') {
                     colors.BtmCussion = geo.color;
-                } 
+                }
             }
         });
     }
@@ -49,6 +49,7 @@ const OficeTable = ({edit, imgArray, geos}) => {
     const renderMaterial = (type, baseMaterial, color, texture) => {
         if (edit === "edit") {
             if (color) {
+                
                 return (
                     <meshStandardMaterial
                         color={color}
@@ -81,7 +82,7 @@ const OficeTable = ({edit, imgArray, geos}) => {
         }
         return null;
     };
-
+console.log(textures)
     return (
         <group
             scale={[50, 50, 50]}
@@ -117,6 +118,7 @@ const OficeTable = ({edit, imgArray, geos}) => {
                 scale={[0.1, 0.1, 0.1]}
             />
             <mesh
+                
                 castShadow
                 geometry={nodes.TopCus.geometry}
                 material={materials.TopCusMaterial}
@@ -126,10 +128,12 @@ const OficeTable = ({edit, imgArray, geos}) => {
                 position={[0.105, -0.045, 0]}
                 scale={[0.1, 0.1, 0.1]}
             >
-                {renderMaterial('TopCussion', materials.TopCusMaterial, colors.TopCussion, textures.TopCussion)}
+                
+                {renderMaterial('TopCussion', materials.TopCusMaterial, colors.TopCussion, null)}
 
             </mesh>
             <mesh
+                transparent
                 castShadow
                 geometry={nodes.TopCusCloth.geometry}
                 material={materials.TopCusClothMaterial}
@@ -139,7 +143,7 @@ const OficeTable = ({edit, imgArray, geos}) => {
                 position={[0.105, -0.045, 0]}
                 scale={[0.1, 0.1, 0.1]}
             >
-                {renderMaterial('TopCussion', materials.TopCusClothMaterial, null, textures.TopCussion)}
+                {renderMaterial('TopCussion', materials.TopCusClothMaterial, null, textures.TopCusCloth)}
             </mesh>
             <mesh
                 castShadow
@@ -151,10 +155,11 @@ const OficeTable = ({edit, imgArray, geos}) => {
                 position={[0.105, -0.045, 0]}
                 scale={[0.1, 0.1, 0.1]}
             >
-                {renderMaterial('BtmCussion', materials.BtmCusMaterial, colors.BtmCussion, textures.BtmCussion)}
+                {renderMaterial('BtmCussion', materials.BtmCusMaterial, colors.BtmCussion, null)}
             </mesh>
 
             <mesh
+                transparent
                 castShadow
                 geometry={nodes.BtmCusCloth.geometry}
                 material={materials.BtmCusClothMaterial}
@@ -164,7 +169,7 @@ const OficeTable = ({edit, imgArray, geos}) => {
                 position={[0.105, -0.045, 0]}
                 scale={[0.1, 0.1, 0.1]}
             >
-                {renderMaterial('BtmCussion', materials.BtmCusClothMaterial, null, textures.BtmCussion)}
+                {renderMaterial('BtmCussion', materials.BtmCusClothMaterial, null, textures.BtmCusCloth)}
             </mesh>
         </group>
     );

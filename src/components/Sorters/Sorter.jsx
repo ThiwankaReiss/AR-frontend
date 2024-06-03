@@ -3,7 +3,7 @@ import Sofa from '../ThreeDModels/Sofa';
 import CanvasModel from '../../canvas/CanvasModel';
 import axios from 'axios';
 
-const Sorter = ({ geos }) => {
+const Sorter = ({ geos, model }) => {
     const [imgArray, setImgArray] = useState([]);
 
     useEffect(() => {
@@ -24,7 +24,7 @@ const Sorter = ({ geos }) => {
                     } else {
                         console.error(`Error fetching image for ${geos[index].name}:`, result.reason);
                         return {
-                            image: null,
+                            image: 'src/assets/noImage.png',
                             type: geos[index].name
                         };
                     }
@@ -44,7 +44,7 @@ const Sorter = ({ geos }) => {
     return (
         <>
             {imgArray.length === geos.length && (
-                <CanvasModel imgArray={imgArray} geos={geos} model={"officeTable"} edit="edit" />
+                <CanvasModel imgArray={imgArray} geos={geos} model={model} edit="edit" />
             )}
         </>
     );
