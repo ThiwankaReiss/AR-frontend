@@ -11,23 +11,9 @@ const Customizer = () => {
     const [activeTab, setActiveTab] = useState(null);
     const [geos, setGeos] = useState([
         {
-            name: "Pillow",
+            name: "Table",
             color: "#0000ff",
             texture: 4,
-            repeate: 20,
-            visible: true
-        },
-        {
-            name: "Seat",
-            color: "#0000ff",
-            texture: 6,
-            repeate: 20,
-            visible: true
-        },
-        {
-            name: "Frame",
-            color: "#0000ff",
-            texture: 6,
             repeate: 20,
             visible: true
         }

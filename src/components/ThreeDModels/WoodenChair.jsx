@@ -2,7 +2,7 @@ import React from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
-const WoodenChair = (edit, imgArray, geos) => {
+const WoodenChair = ({edit, imgArray, geos}) => {
     const { nodes, materials } = useGLTF('/woodChair.glb');
     const textures = {
         Cussion: null
@@ -27,6 +27,52 @@ const WoodenChair = (edit, imgArray, geos) => {
             }
         });
     }
+    if (geos) {
+        geos.forEach((geo) => {
+            if (geo.color) {
+                if (geo.name === 'Cussion') {
+                    colors.Cussion = geo.color;
+                } 
+            }
+        });
+    }
+    const renderMaterial = (type, baseMaterial, color, texture) => {
+        if (edit === "edit") {
+            if (color) {
+                return (
+                    <meshStandardMaterial
+                        color={color}
+                        roughness={baseMaterial.roughness}
+                        metalness={baseMaterial.metalness}
+                        normalMap={baseMaterial.normalMap}
+                        aoMap={baseMaterial.aoMap}
+                        emissive={baseMaterial.emissive}
+                        opacity={1.0}
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                );
+            } else if (texture) {
+                return (
+                    <meshStandardMaterial
+                        map={texture}
+                        transparent
+                        roughness={baseMaterial.roughness}
+                        metalness={baseMaterial.metalness}
+                        normalMap={baseMaterial.normalMap}
+                        aoMap={baseMaterial.aoMap}
+                        emissive={baseMaterial.emissive}
+                        opacity={1.0}
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                );
+            }
+        }
+        return null;
+    };
+
+
     
 
     return (
@@ -53,20 +99,7 @@ const WoodenChair = (edit, imgArray, geos) => {
                     position={[0, 0, 0]}
                     scale={[0.2, 0.2, 0.2]}
                 >
-                    {edit && edit == "edit" && (
-                        <meshStandardMaterial
-                            color={'#2828FE'}
-                            roughness={materials.CussionMaterial.roughness}
-                            metalness={materials.CussionMaterial.metalness}
-                            normalMap={materials.CussionMaterial.normalMap}
-                            aoMap={materials.CussionMaterial.aoMap}
-                            emissive={materials.CussionMaterial.emissive}
-
-                            opacity={1.0} // Adjust opacity as needed
-                            depthTest={true}
-                            depthWrite={true}
-                        />
-                    )}
+                    {renderMaterial('Cussion', materials.CussionMaterial, colors.Cussion, textures.Cussion)}
                 </mesh>
             ))}
             {nodes.cussionCloth.children.map((child, index) => (
@@ -81,21 +114,7 @@ const WoodenChair = (edit, imgArray, geos) => {
                     position={[0, 0, 0]}
                     scale={[0.2, 0.2, 0.2]}
                 >
-                    {edit && edit == "edit" && (
-                        <meshStandardMaterial
-                            map={flowerTexture}
-                            transparent
-                            roughness={materials.CussionClothMaterial.roughness}
-                            metalness={materials.CussionClothMaterial.metalness}
-                            normalMap={materials.CussionClothMaterial.normalMap}
-                            aoMap={materials.CussionClothMaterial.aoMap}
-                            emissive={materials.CussionClothMaterial.emissive}
-
-                            opacity={1.0} // Adjust opacity as needed
-                            depthTest={true}
-                            depthWrite={true}
-                        />
-                    )}
+                    {renderMaterial('Cussion', materials.CussionClothMaterial, null, textures.Cussion)}
                 </mesh>
             ))}
         </group>

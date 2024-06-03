@@ -38,10 +38,10 @@ const CanvasModel = ({ model ,geos,edit,imgArray}) => {
                         <OficeTable geos={geos} edit={edit}></OficeTable>
                     )}
                     {model && model == "picnicTable" && (
-                        <PicnicTable geos={geos} edit={edit}></PicnicTable>
+                        <PicnicTable geos={geos} edit={edit} imgArray={imgArray}></PicnicTable>
                     )}
                     {model && model == "woodenChair" && (
-                        <WoodenChair geos={geos} edit={edit}></WoodenChair>
+                        <WoodenChair geos={geos} edit={edit} imgArray={imgArray}></WoodenChair>
                     )}
                     {/* <Sofa></Sofa> */}
                 </Center>
