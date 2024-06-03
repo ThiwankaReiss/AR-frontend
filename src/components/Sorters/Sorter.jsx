@@ -44,7 +44,7 @@ const Sorter = ({ geos }) => {
     return (
         <>
             {imgArray.length === geos.length && (
-                <CanvasModel imgArray={imgArray} geos={geos} model={"picnicTable"} edit="edit" />
+                <CanvasModel imgArray={imgArray} geos={geos} model={"officeTable"} edit="edit" />
             )}
         </>
     );

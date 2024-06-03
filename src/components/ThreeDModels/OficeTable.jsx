@@ -3,13 +3,84 @@ import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { easing } from 'maath'
-const OficeTable = ({ edit ,geos}) => {
+const OficeTable = ({edit, imgArray, geos}) => {
     const { nodes, materials } = useGLTF('/office_table.glb');
-    const textureRepeat = 20; 
-    const flowerTexture = useTexture('src/assets/react.svg');
-    flowerTexture.wrapS = flowerTexture.wrapT = THREE.RepeatWrapping;
-    flowerTexture.repeat.set(textureRepeat, textureRepeat);
-    flowerTexture.flipY = false;
+    const textures = {
+        TopCussion: null,
+        BtmCussion: null
+    };
+
+    const colors = {
+        TopCussion: null,
+        BtmCussion: null
+    };
+    const setTextureProperties = (type, index) => {
+        const texture = useTexture(imgArray[index].image);
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(geos[index].repeate, geos[index].repeate);
+        texture.flipY = false;
+        return texture;
+    };
+
+    if (imgArray) {
+        imgArray.forEach((img, index) => {
+            if (img.image) {
+                if (img.type === 'TopCussion') {
+                    textures.TopCussion = setTextureProperties('TopCussion', index);
+                } else if (img.type === 'BtmCussion') {
+                    textures.BtmCussion = setTextureProperties('BtmCussion', index);
+                }
+            }
+        });
+    }
+
+    if (geos) {
+        geos.forEach((geo) => {
+            if (geo.color) {
+                if (geo.name === 'TopCussion') {
+                    colors.TopCussion = geo.color;
+                } else if (geo.name === 'BtmCussion') {
+                    colors.BtmCussion = geo.color;
+                } 
+            }
+        });
+    }
+
+    const renderMaterial = (type, baseMaterial, color, texture) => {
+        if (edit === "edit") {
+            if (color) {
+                return (
+                    <meshStandardMaterial
+                        color={color}
+                        roughness={baseMaterial.roughness}
+                        metalness={baseMaterial.metalness}
+                        normalMap={baseMaterial.normalMap}
+                        aoMap={baseMaterial.aoMap}
+                        emissive={baseMaterial.emissive}
+                        opacity={1.0}
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                );
+            } else if (texture) {
+                return (
+                    <meshStandardMaterial
+                        map={texture}
+                        transparent
+                        roughness={baseMaterial.roughness}
+                        metalness={baseMaterial.metalness}
+                        normalMap={baseMaterial.normalMap}
+                        aoMap={baseMaterial.aoMap}
+                        emissive={baseMaterial.emissive}
+                        opacity={1.0}
+                        depthTest={true}
+                        depthWrite={true}
+                    />
+                );
+            }
+        }
+        return null;
+    };
 
     return (
         <group
@@ -55,22 +126,7 @@ const OficeTable = ({ edit ,geos}) => {
                 position={[0.105, -0.045, 0]}
                 scale={[0.1, 0.1, 0.1]}
             >
-                {edit && edit == "edit" && (
-                    <meshStandardMaterial
-
-                        color={'#2828FE'}
-
-                        roughness={materials.TopCusMaterial.roughness}
-                        metalness={materials.TopCusMaterial.metalness}
-                        normalMap={materials.TopCusMaterial.normalMap}
-                        aoMap={materials.TopCusMaterial.aoMap}
-                        emissive={materials.TopCusMaterial.emissive}
-
-                        opacity={1.0} // Adjust opacity as needed
-                        depthTest={true}
-                        depthWrite={true}
-                    />
-                )}
+                {renderMaterial('TopCussion', materials.TopCusMaterial, colors.TopCussion, textures.TopCussion)}
 
             </mesh>
             <mesh
@@ -83,22 +139,7 @@ const OficeTable = ({ edit ,geos}) => {
                 position={[0.105, -0.045, 0]}
                 scale={[0.1, 0.1, 0.1]}
             >
-                {edit && edit == "edit" && (
-                    <meshStandardMaterial
-
-                        transparent
-                        map={flowerTexture}
-                        roughness={materials.TopCusClothMaterial.roughness}
-                        metalness={materials.TopCusClothMaterial.metalness}
-                        normalMap={materials.TopCusClothMaterial.normalMap}
-                        aoMap={materials.TopCusClothMaterial.aoMap}
-                        emissive={materials.TopCusClothMaterial.emissive}
-
-                        opacity={1.0} // Adjust opacity as needed
-                        depthTest={true}
-                        depthWrite={true}
-                    />
-                )}
+                {renderMaterial('TopCussion', materials.TopCusClothMaterial, null, textures.TopCussion)}
             </mesh>
             <mesh
                 castShadow
@@ -110,22 +151,7 @@ const OficeTable = ({ edit ,geos}) => {
                 position={[0.105, -0.045, 0]}
                 scale={[0.1, 0.1, 0.1]}
             >
-                {edit && edit == "edit" && (
-                    <meshStandardMaterial
-
-                        color={'#FF9F00'}
-
-                        roughness={materials.BtmCusMaterial.roughness}
-                        metalness={materials.BtmCusMaterial.metalness}
-                        normalMap={materials.BtmCusMaterial.normalMap}
-                        aoMap={materials.BtmCusMaterial.aoMap}
-                        emissive={materials.BtmCusMaterial.emissive}
-
-                        opacity={1.0} // Adjust opacity as needed
-                        depthTest={true}
-                        depthWrite={true}
-                    />
-                )}
+                {renderMaterial('BtmCussion', materials.BtmCusMaterial, colors.BtmCussion, textures.BtmCussion)}
             </mesh>
 
             <mesh
@@ -138,22 +164,7 @@ const OficeTable = ({ edit ,geos}) => {
                 position={[0.105, -0.045, 0]}
                 scale={[0.1, 0.1, 0.1]}
             >
-                {edit && edit == "edit" && (
-                    <meshStandardMaterial
-
-                        map={flowerTexture}
-                        transparent
-                        roughness={materials.BtmCusClothMaterial.roughness}
-                        metalness={materials.BtmCusClothMaterial.metalness}
-                        normalMap={materials.BtmCusClothMaterial.normalMap}
-                        aoMap={materials.BtmCusClothMaterial.aoMap}
-                        emissive={materials.BtmCusClothMaterial.emissive}
-
-                        opacity={1.0} // Adjust opacity as needed
-                        depthTest={true}
-                        depthWrite={true}
-                    />
-                )}
+                {renderMaterial('BtmCussion', materials.BtmCusClothMaterial, null, textures.BtmCussion)}
             </mesh>
         </group>
     );

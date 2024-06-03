@@ -11,7 +11,14 @@ const Customizer = () => {
     const [activeTab, setActiveTab] = useState(null);
     const [geos, setGeos] = useState([
         {
-            name: "Table",
+            name: "TopCussion",
+            color: "#0000ff",
+            texture: 4,
+            repeate: 20,
+            visible: true
+        },
+        {
+            name: "BtmCussion",
             color: "#0000ff",
             texture: 4,
             repeate: 20,

@@ -35,7 +35,7 @@ const CanvasModel = ({ model ,geos,edit,imgArray}) => {
                         <Sofa geos={geos} edit={edit} imgArray={imgArray}></Sofa>
                     )}
                     {model && model == "officeTable" && (
-                        <OficeTable geos={geos} edit={edit}></OficeTable>
+                        <OficeTable geos={geos} edit={edit} imgArray={imgArray}></OficeTable>
                     )}
                     {model && model == "picnicTable" && (
                         <PicnicTable geos={geos} edit={edit} imgArray={imgArray}></PicnicTable>
