@@ -85,14 +85,14 @@ export default function NavBar({ navButton }) {
                             </li>
                             <li className="nav-item itm-link">
                                 <Link to="/manage"
-                                    onClick={() => { setSelectedBtn(6) }}
-                                    onMouseEnter={() => { sethoverBtn(6) }}
+                                    onClick={() => { setSelectedBtn(5) }}
+                                    onMouseEnter={() => { sethoverBtn(5) }}
                                     onMouseLeave={() => { sethoverBtn(null) }}
-                                    className={`nav-link  ${(hoverBtn || selectedBtn) && (hoverBtn === 6 || selectedBtn == 6) ? 'selected-txt' : 'un-selected-txt'}`}
+                                    className={`nav-link  ${(hoverBtn || selectedBtn) && (hoverBtn === 5 || selectedBtn == 5) ? 'selected-txt' : 'un-selected-txt'}`}
                                     aria-current="page">
                                     <i class="bi bi-people-fill"></i> Manage
                                 </Link>
-                                {(hoverBtn || selectedBtn) && (hoverBtn === 6 || selectedBtn == 6) && (<div className='shadow-bellow'></div>)}
+                                {(hoverBtn || selectedBtn) && (hoverBtn === 5 || selectedBtn == 5) && (<div className='shadow-bellow'></div>)}
                             </li>
                             <li className="nav-item itm-link">
                                 <a

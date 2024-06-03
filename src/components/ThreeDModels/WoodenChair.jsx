@@ -72,9 +72,6 @@ const WoodenChair = ({edit, imgArray, geos}) => {
         return null;
     };
 
-
-    
-
     return (
         <group>
             <mesh

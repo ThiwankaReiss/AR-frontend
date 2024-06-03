@@ -16,7 +16,7 @@ const Products = () => {
   const navigate = useNavigate();
   const handleEdit = (data) => {
     state.geometry = data;
-
+    state.navButton=5;
     navigate('/manage')
   }
   const handleView = (data) => {
@@ -58,6 +58,45 @@ const Products = () => {
         visible: true,
       }
       ]
+    },
+    sofa: {
+      price: 800,
+      name: 'Sofa',
+      type: 'sofa',
+      images: '',
+      materials: [{
+        name: 'Pillow',
+        color: null,
+        texture: 0,
+        repeate: 20,
+        visible: true,
+      }, {
+        name: 'Seat',
+        color: null,
+        texture: 0,
+        repeate: 20,
+        visible: true,
+      }, {
+        name: 'Frame',
+        color: null,
+        texture: 0,
+        repeate: 20,
+        visible: true,
+      }
+      ]
+    },
+    picnicTable: {
+      price: 800,
+      name: 'PinicTable',
+      type: 'picnicTable',
+      images: '',
+      materials: [{
+        name: 'Table',
+        color: null,
+        texture: 0,
+        repeate: 20,
+        visible: true,
+      }]
     }
   }
   return (
@@ -135,7 +174,7 @@ const Products = () => {
         <div className="col-lg-3 m-3 model-container" style={{ border: `2px solid ${snap.themeColor}` }}>
           <Sorter model="sofa" geos={[]}></Sorter>
           <div className='buttons-container'>
-            <button className='btn btn-sm btn-outline-warning m-1'>Edit</button>
+            <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(initialGeos.sofa) }}>Edit</button>
             <button className='btn btn-sm btn-outline-success m-1'>View</button>
             <button className='btn btn-sm btn-outline-info m-1'>Cart</button>
           </div>
@@ -143,7 +182,7 @@ const Products = () => {
         <div className="col-lg-3 m-3 model-container" style={{ border: `2px solid ${snap.themeColor}` }}>
           <Sorter model="picnicTable" geos={[]}></Sorter>
           <div className='buttons-container'>
-            <button className='btn btn-sm btn-outline-warning m-1'>Edit</button>
+            <button className='btn btn-sm btn-outline-warning m-1'onClick={() => { handleEdit(initialGeos.picnicTable) }}>Edit</button>
             <button className='btn btn-sm btn-outline-success m-1'>View</button>
             <button className='btn btn-sm btn-outline-info m-1'>Cart</button>
           </div>

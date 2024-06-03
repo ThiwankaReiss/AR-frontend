@@ -101,7 +101,7 @@ const Sofa = ({ edit, imgArray, geos }) => {
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                {renderMaterial('Frame', materials.FrameMaterial, colors.Frame, textures.Frame)}
+                {renderMaterial('Frame', materials.FrameMaterial, colors.Frame, null)}
             </mesh>
             <mesh
                 castShadow
@@ -132,7 +132,7 @@ const Sofa = ({ edit, imgArray, geos }) => {
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                {renderMaterial('Seat', materials.SeatsMaterial, colors.Seat, textures.Seat)}
+                {renderMaterial('Seat', materials.SeatsMaterial, colors.Seat, null)}
             </mesh>
             <mesh
                 castShadow
@@ -154,7 +154,7 @@ const Sofa = ({ edit, imgArray, geos }) => {
                 position={[0, 0, 0]}
                 scale={[5, 5, 5]}
             >
-                {renderMaterial('Pillow', materials.PillowsMaterial, colors.Pillow, textures.Pillow)}
+                {renderMaterial('Pillow', materials.PillowsMaterial, colors.Pillow, null)}
             </mesh>
             <mesh
                 castShadow

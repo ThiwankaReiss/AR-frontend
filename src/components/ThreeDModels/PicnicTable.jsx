@@ -91,7 +91,7 @@ const PicnicTable = ({edit, imgArray, geos}) => {
                 position={[0, 0, 0]}
                 scale={[0.001, 0.001, 0.001]}
             >
-                {renderMaterial('Table', materials.TableMaterial, colors.Table, textures.Table)}
+                {renderMaterial('Table', materials.TableMaterial, colors.Table, null)}
             </mesh>
             <mesh
                 castShadow
