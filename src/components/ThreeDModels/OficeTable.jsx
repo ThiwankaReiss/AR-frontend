@@ -3,7 +3,7 @@ import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { easing } from 'maath'
-const OficeTable = ({ edit, imgArray, geos }) => {
+const OficeTable = ({  imgArray, geos }) => {
     const { nodes, materials } = useGLTF('/office_table.glb');
     const textures = {
         TopCusCloth: null,
@@ -47,7 +47,7 @@ const OficeTable = ({ edit, imgArray, geos }) => {
     }
 
     const renderMaterial = (type, baseMaterial, color, texture) => {
-        if (edit === "edit") {
+        
             if (color) {
                 
                 return (
@@ -79,7 +79,7 @@ const OficeTable = ({ edit, imgArray, geos }) => {
                     />
                 );
             }
-        }
+       
         return null;
     };
 console.log(textures)

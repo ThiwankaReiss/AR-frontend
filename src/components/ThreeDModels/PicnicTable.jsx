@@ -2,7 +2,7 @@ import React from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
-const PicnicTable = ({edit, imgArray, geos}) => {
+const PicnicTable = ({ imgArray, geos}) => {
     const { nodes, materials } = useGLTF('/PicnicWoodTable.glb');
 
     const textures = {
@@ -41,7 +41,7 @@ const PicnicTable = ({edit, imgArray, geos}) => {
     }
 
     const renderMaterial = (type, baseMaterial, color, texture) => {
-        if (edit === "edit") {
+       
             if (color) {
                 return (
                     <meshStandardMaterial
@@ -72,7 +72,7 @@ const PicnicTable = ({edit, imgArray, geos}) => {
                     />
                 );
             }
-        }
+        
         return null;
     };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
-const WoodenChair = ({ edit, imgArray, geos }) => {
+const WoodenChair = ({  imgArray, geos }) => {
     const { nodes, materials } = useGLTF('/woodChair.glb');
     const textures = {
         Cussion: null

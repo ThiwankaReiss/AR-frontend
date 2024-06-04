@@ -2,7 +2,7 @@ import React from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
-const Sofa = ({ edit, imgArray, geos }) => {
+const Sofa = ({  imgArray, geos }) => {
     const { nodes, materials } = useGLTF('/sofa_baked.glb');
 
     const textures = {
@@ -55,7 +55,7 @@ const Sofa = ({ edit, imgArray, geos }) => {
     }
 
     const renderMaterial = (type, baseMaterial, color, texture) => {
-        if (edit === "edit") {
+       
             if (color) {
                 return (
                     <meshStandardMaterial
@@ -86,7 +86,7 @@ const Sofa = ({ edit, imgArray, geos }) => {
                     />
                 );
             }
-        }
+  
         return null;
     };
 
