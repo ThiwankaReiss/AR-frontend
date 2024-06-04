@@ -103,7 +103,7 @@ const PicUpload = ({ text, getImage, currentImage, setShowImage, showImage }) =>
 
                         </div>
                         <div className='w-100 mt-1 d-flex justify-content-end'>
-                            <button className='btn btn-outline-primary btn-sm' onClick={uploadImage}>Add to dress</button>
+                            <button className='btn btn-outline-primary btn-sm' onClick={uploadImage}>Add</button>
                         </div>
 
 

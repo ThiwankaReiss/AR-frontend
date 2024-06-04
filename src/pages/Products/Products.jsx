@@ -30,7 +30,7 @@ const Products = () => {
       price: 800,
       name: 'Wooden Chair',
       type: 'woodenChair',
-      images: '',
+      images: [],
       materials: [{
         name: 'Cussion',
         color: null,
@@ -43,7 +43,7 @@ const Products = () => {
       price: 800,
       name: 'Office Tables',
       type: 'officeTable',
-      images: '',
+      images: [],
       materials: [{
         name: 'TopCussion',
         color: null,
@@ -63,7 +63,7 @@ const Products = () => {
       price: 800,
       name: 'Sofa',
       type: 'sofa',
-      images: '',
+      images: [],
       materials: [{
         name: 'Pillow',
         color: null,
@@ -89,7 +89,7 @@ const Products = () => {
       price: 800,
       name: 'PinicTable',
       type: 'picnicTable',
-      images: '',
+      images: [],
       materials: [{
         name: 'Table',
         color: null,

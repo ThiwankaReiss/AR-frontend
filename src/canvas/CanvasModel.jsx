@@ -30,16 +30,16 @@ const CanvasModel = ({ model ,geos,edit,imgArray}) => {
                 <Center>
                     
                     {model && model == "sofa" && (
-                        <Sofa geos={geos} edit={edit} imgArray={imgArray}></Sofa>
+                        <Sofa geos={geos} imgArray={imgArray}></Sofa>
                     )}
                     {model && model == "officeTable" && (
-                        <OficeTable geos={geos} edit={edit} imgArray={imgArray}></OficeTable>
+                        <OficeTable geos={geos} imgArray={imgArray}></OficeTable>
                     )}
                     {model && model == "picnicTable" && (
-                        <PicnicTable geos={geos} edit={edit} imgArray={imgArray}></PicnicTable>
+                        <PicnicTable geos={geos} imgArray={imgArray}></PicnicTable>
                     )}
                     {model && model == "woodenChair" && (
-                        <WoodenChair geos={geos} edit={edit} imgArray={imgArray}></WoodenChair>
+                        <WoodenChair geos={geos} imgArray={imgArray}></WoodenChair>
                     )}
                     {/* <Sofa></Sofa> */}
                 </Center>

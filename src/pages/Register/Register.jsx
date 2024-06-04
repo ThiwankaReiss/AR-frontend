@@ -74,7 +74,7 @@ const Register = () => {
                 <input
                   
                   required=""
-                  class="input"
+                  class="input2"
                   type="email"
                   name="email"
                   id="email"
@@ -86,7 +86,7 @@ const Register = () => {
                 <input
                 onFocus={()=>{setPassMissMatch(false)}}
                   required=""
-                  class="input"
+                  class="input2"
                   type="password"
                   name="password"
                   id="password"

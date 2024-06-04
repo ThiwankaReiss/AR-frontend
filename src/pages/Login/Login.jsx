@@ -63,7 +63,7 @@ const Login = () => {
               <form action="" class="form">
                 <input
                   required=""
-                  class="input"
+                  class="input1"
                   type="email"
                   name="email"
                   id="email"
@@ -74,7 +74,7 @@ const Login = () => {
                 {errors && errors.email && errors.email.type == "pattern" && (<p>Enter correct email</p>)}
                 <input
                   required=""
-                  class="input"
+                  class="input1"
                   type="password"
                   name="password"
                   id="password"

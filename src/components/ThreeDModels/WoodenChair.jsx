@@ -2,7 +2,7 @@ import React from 'react';
 import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
-const WoodenChair = ({edit, imgArray, geos}) => {
+const WoodenChair = ({ edit, imgArray, geos }) => {
     const { nodes, materials } = useGLTF('/woodChair.glb');
     const textures = {
         Cussion: null
@@ -23,7 +23,7 @@ const WoodenChair = ({edit, imgArray, geos}) => {
             if (img.image) {
                 if (img.type === 'Cussion') {
                     textures.Cussion = setTextureProperties('Cussion', index);
-                } 
+                }
             }
         });
     }
@@ -32,43 +32,43 @@ const WoodenChair = ({edit, imgArray, geos}) => {
             if (geo.color) {
                 if (geo.name === 'Cussion') {
                     colors.Cussion = geo.color;
-                } 
+                }
             }
         });
     }
     const renderMaterial = (type, baseMaterial, color, texture) => {
-        if (edit === "edit") {
-            if (color) {
-                return (
-                    <meshStandardMaterial
-                        color={color}
-                        roughness={baseMaterial.roughness}
-                        metalness={baseMaterial.metalness}
-                        normalMap={baseMaterial.normalMap}
-                        aoMap={baseMaterial.aoMap}
-                        emissive={baseMaterial.emissive}
-                        opacity={1.0}
-                        depthTest={true}
-                        depthWrite={true}
-                    />
-                );
-            } else if (texture) {
-                return (
-                    <meshStandardMaterial
-                        map={texture}
-                        transparent
-                        roughness={baseMaterial.roughness}
-                        metalness={baseMaterial.metalness}
-                        normalMap={baseMaterial.normalMap}
-                        aoMap={baseMaterial.aoMap}
-                        emissive={baseMaterial.emissive}
-                        opacity={1.0}
-                        depthTest={true}
-                        depthWrite={true}
-                    />
-                );
-            }
+
+        if (color) {
+            return (
+                <meshStandardMaterial
+                    color={color}
+                    roughness={baseMaterial.roughness}
+                    metalness={baseMaterial.metalness}
+                    normalMap={baseMaterial.normalMap}
+                    aoMap={baseMaterial.aoMap}
+                    emissive={baseMaterial.emissive}
+                    opacity={1.0}
+                    depthTest={true}
+                    depthWrite={true}
+                />
+            );
+        } else if (texture) {
+            return (
+                <meshStandardMaterial
+                    map={texture}
+                    transparent
+                    roughness={baseMaterial.roughness}
+                    metalness={baseMaterial.metalness}
+                    normalMap={baseMaterial.normalMap}
+                    aoMap={baseMaterial.aoMap}
+                    emissive={baseMaterial.emissive}
+                    opacity={1.0}
+                    depthTest={true}
+                    depthWrite={true}
+                />
+            );
         }
+
         return null;
     };
 
