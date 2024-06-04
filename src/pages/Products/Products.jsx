@@ -10,13 +10,13 @@ import { useNavigate } from 'react-router-dom'
 import WoodenChair from '../../components/ThreeDModels/WoodenChair'
 import axios from 'axios'
 const Products = () => {
-  const [geometries,setGeometries]=useState(null);
+  const [geometries, setGeometries] = useState(null);
   useEffect(() => {
     Aos.init();
     const fetchData = async () => {
 
       try {
-        const response= await axios.get('http://localhost:8080/model');
+        const response = await axios.get('http://localhost:8080/model');
         setGeometries(response.data);
         console.log(response.data);
       } catch (error) {
@@ -40,81 +40,7 @@ const Products = () => {
     navigate('/details')
   }
 
-  const initialGeos = {
 
-    woodenChair: {
-      price: 800,
-      name: 'Wooden Chair',
-      type: 'woodenChair',
-      images: [],
-      materials: [{
-        name: 'Cussion',
-        color: null,
-        texture: 0,
-        repeate: 20,
-        visible: true,
-      }]
-    },
-    officeTable: {
-      price: 800,
-      name: 'Office Tables',
-      type: 'officeTable',
-      images: [],
-      materials: [{
-        name: 'TopCussion',
-        color: null,
-        texture: 0,
-        repeate: 20,
-        visible: true,
-      }, {
-        name: 'BtmCussion',
-        color: null,
-        texture: 0,
-        repeate: 20,
-        visible: true,
-      }
-      ]
-    },
-    sofa: {
-      price: 800,
-      name: 'Sofa',
-      type: 'sofa',
-      images: [],
-      materials: [{
-        name: 'Pillow',
-        color: null,
-        texture: 0,
-        repeate: 20,
-        visible: true,
-      }, {
-        name: 'Seat',
-        color: null,
-        texture: 0,
-        repeate: 20,
-        visible: true,
-      }, {
-        name: 'Frame',
-        color: null,
-        texture: 0,
-        repeate: 20,
-        visible: true,
-      }
-      ]
-    },
-    picnicTable: {
-      price: 800,
-      name: 'PinicTable',
-      type: 'picnicTable',
-      images: [],
-      materials: [{
-        name: 'Table',
-        color: null,
-        texture: 0,
-        repeate: 20,
-        visible: true,
-      }]
-    }
-  }
 
   return (
     <div className="container">
@@ -172,47 +98,22 @@ const Products = () => {
 
       </div>
       <div className="row d-flex justify-content-center">
-        <div className="col-lg-3 m-3 model-container" style={{ border: `2px solid ${snap.themeColor}` }}>
-          <Sorter model="woodenChair" geos={[initialGeos.woodenChair]} />
-          <div className='buttons-container'>
-            <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(initialGeos.woodenChair) }}>Edit</button>
-            <button className='btn btn-sm btn-outline-success m-1' onClick={() => { handleView(initialGeos.woodenChair) }}>View</button>
-            <button className='btn btn-sm btn-outline-info m-1'>Cart</button>
-          </div>
-        </div>
-        <div className="col-lg-3 m-3 model-container" style={{ border: `2px solid ${snap.themeColor}` }}>
-          <Sorter model="officeTable" geos={[]}></Sorter>
-          <div className='buttons-container'>
-            <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(initialGeos.officeTable) }}>Edit</button>
-            <button className='btn btn-sm btn-outline-success m-1' onClick={() => { handleView(initialGeos.officeTable) }}>View</button>
-            <button className='btn btn-sm btn-outline-info m-1'>Cart</button>
-          </div>
-        </div>
-        <div className="col-lg-3 m-3 model-container" style={{ border: `2px solid ${snap.themeColor}` }}>
-          <Sorter model="sofa" geos={[]}></Sorter>
-          <div className='buttons-container'>
-            <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(initialGeos.sofa) }}>Edit</button>
-            <button className='btn btn-sm btn-outline-success m-1' onClick={() => { handleView(initialGeos.sofa) }}>View</button>
-            <button className='btn btn-sm btn-outline-info m-1'>Cart</button>
-          </div>
-        </div>
-        <div className="col-lg-3 m-3 model-container" style={{ border: `2px solid ${snap.themeColor}` }}>
-          <Sorter model="picnicTable" geos={[]}></Sorter>
-          <div className='buttons-container'>
-            <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(initialGeos.picnicTable) }}>Edit</button>
-            <button className='btn btn-sm btn-outline-success m-1' onClick={() => { handleView(initialGeos.picnicTable) }}>View</button>
-            <button className='btn btn-sm btn-outline-info m-1'>Cart</button>
-          </div>
-        </div>
-        {geometries && geometries.map((data)=>(
+
+        {geometries && geometries.map((data) => (
           <div className="col-lg-3 m-3 model-container" style={{ border: `2px solid ${snap.themeColor}` }}>
-          <Sorter model={data.type} geos={data.materials}></Sorter>
-          <div className='buttons-container'>
-            <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(data) }}>Edit</button>
-            <button className='btn btn-sm btn-outline-success m-1' onClick={() => { handleView(data) }}>View</button>
-            <button className='btn btn-sm btn-outline-info m-1'>Cart</button>
+            <Sorter model={data.type} geos={data.materials}></Sorter>
+            <div style={{ position: 'absolute', top: '5%', right: '60%', color: snap.themeColor }} className='desc-container-2 d-flex align-items-center justify-content-center'>
+              Rs.{data.price}/=
+            </div>
+            <div style={{ position: 'absolute', top: '83%', right: '60%', color: snap.themeColor }} className='d-flex align-items-center justify-content-center'>
+              {data.name}
+            </div>
+            <div className='buttons-container'>
+              <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(data) }}><i class="bi bi-pen"></i></button>
+              <button className='btn btn-sm btn-outline-success m-1' onClick={() => { handleView(data) }}><i class="bi bi-eye-fill"></i></button>
+              <button className='btn btn-sm btn-outline-info m-1'><i class="bi bi-cart-dash"></i></button>
+            </div>
           </div>
-        </div>
         ))}
 
 

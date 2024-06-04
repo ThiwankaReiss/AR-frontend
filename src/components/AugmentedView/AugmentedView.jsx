@@ -5,7 +5,7 @@ import Draggable from 'react-draggable';
 import Sorter from '../Sorters/Sorter';
 import state from '../../store'
 import { useSnapshot } from 'valtio';
-const AugmentedView = ({ augmented }) => {
+const AugmentedView = () => {
     const snap = useSnapshot(state);
     const videoRef = useRef(null);
     const canvasRef = useRef(null);
@@ -30,6 +30,8 @@ const AugmentedView = ({ augmented }) => {
                     videoRef.current.play();
                     setIsCameraEnabled(true);
                 }
+
+                
             } catch (error) {
                 console.error('Error accessing the back camera, trying the front camera', error);
                 try {
@@ -40,6 +42,7 @@ const AugmentedView = ({ augmented }) => {
                         videoRef.current.play();
                         setIsCameraEnabled(true);
                     }
+                    
                 } catch (error) {
                     console.error('Error accessing the front camera', error);
                 }

@@ -19,7 +19,7 @@ const Detail = () => {
         <div className="col-lg-8 mt-4">
           <p style={{color:snap.themeColor}}>
             Name :&nbsp;{state.geometry.name} &nbsp;&nbsp;&nbsp;
-             Price :&nbsp;{state.geometry.price}
+             Price :&nbsp;Rs.{state.geometry.price}/=
           </p>
         </div>
         <div className="col-lg-4 d-flex justify-content-end mt-3">
@@ -38,7 +38,7 @@ const Detail = () => {
           
         </div>
         <div className="col-lg-6 mb-3 mt-2">
-          {augmented && (<AugmentedView ></AugmentedView>) ||
+          {augmented && (<AugmentedView  ></AugmentedView>) ||
             (<Sorter geos={snap.geometry.materials} model={snap.geometry.type}></Sorter>)
           }
         </div>
