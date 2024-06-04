@@ -4,7 +4,7 @@ import { useSnapshot } from 'valtio'
 import state from '../../store'
 import axios from 'axios'
 const ImageCarousel = ({ imagesArray }) => {
-    const [activeImg, setActiveImage] = useState(1);
+    const [activeImg, setActiveImage] = useState(0);
     const snap = useSnapshot(state);
     const [imgArray, setImgArray] = useState([]);
 
@@ -47,7 +47,7 @@ const ImageCarousel = ({ imagesArray }) => {
                 <div className="col-11 mt-3 mb-3  card ">
 
                     <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                        <div class="carousel-inner">
+                        <div class="carousel-inner add-min-height">
                             {imgArray && imgArray.map((data, index) => (
                                 <div className={`carousel-item ${activeImg == index ? 'active' : ''}`}>
                                     <div className='w-100 d-flex align-items-center justify-content-center'>
