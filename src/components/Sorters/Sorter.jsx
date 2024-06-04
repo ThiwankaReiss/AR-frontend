@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Sofa from '../ThreeDModels/Sofa';
 import CanvasModel from '../../canvas/CanvasModel';
 import axios from 'axios';
+import ARModel from '../../canvas/ARModel';
 
-const Sorter = ({ geos, model }) => {
+const Sorter = ({ geos, model, augmented, avgIntensity, lightX, lightY, modelSize }) => {
     const [imgArray, setImgArray] = useState([]);
 
     useEffect(() => {
@@ -43,9 +44,24 @@ const Sorter = ({ geos, model }) => {
 
     return (
         <>
-            {imgArray.length === geos.length && (
-                <CanvasModel imgArray={imgArray} geos={geos} model={model}  />
+            {augmented && imgArray.length === geos.length && (
+                <ARModel
+                    imgArray={imgArray}
+                    geos={geos}
+                    model={model}
+                    avgIntensity={avgIntensity}
+                    lightX={lightX}
+                    lightY={lightY}
+                    modelSize={modelSize}
+                ></ARModel>
+            ) || imgArray.length === geos.length && (
+                <CanvasModel imgArray={imgArray} geos={geos} model={model} />
             )}
+            {/* { imgArray.length === geos.length && (
+                <CanvasModel imgArray={imgArray} geos={geos} model={model} />)
+                
+            } */}
+
         </>
     );
 };

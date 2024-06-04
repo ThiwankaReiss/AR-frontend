@@ -10,7 +10,7 @@ import OficeTable from '../components/ThreeDModels/OficeTable.jsx'
 import PicnicTable from '../components/ThreeDModels/PicnicTable.jsx'
 import WoodenChair from '../components/ThreeDModels/WoodenChair.jsx'
 
-const CanvasModel = ({ model ,geos,edit,imgArray}) => {
+const CanvasModel = ({ model ,geos,imgArray}) => {
     return (
 
         <Canvas

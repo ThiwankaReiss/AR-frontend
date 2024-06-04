@@ -8,7 +8,7 @@ import WoodenChair from '../components/ThreeDModels/WoodenChair';
 import Sofa from '../components/ThreeDModels/Sofa';
 import OficeTable from '../components/ThreeDModels/OficeTable';
 import PicnicTable from '../components/ThreeDModels/PicnicTable';
-const ARModel = ({ avgIntensity, lightX, lightY ,modelSize}) => {
+const ARModel = ({model ,geos,imgArray, avgIntensity, lightX, lightY ,modelSize}) => {
     const adjustedIntensity = avgIntensity / 12; // Normalize intensity to range 0-1
     
     return (
@@ -22,11 +22,18 @@ const ARModel = ({ avgIntensity, lightX, lightY ,modelSize}) => {
             <Environment preset='city' />
             <ARCamRig cameraCoordinates={[0,0,modelSize]} >
                 <Center>
-                    {/* <Chair/> */}
-                    {/* <WoodenChair/> */}
-                    {/* <Sofa/> */}
-                   {/* <OficeTable/> */}
-                   <PicnicTable/>
+                {model && model == "sofa" && (
+                        <Sofa geos={geos} imgArray={imgArray}></Sofa>
+                    )}
+                    {model && model == "officeTable" && (
+                        <OficeTable geos={geos} imgArray={imgArray}></OficeTable>
+                    )}
+                    {model && model == "picnicTable" && (
+                        <PicnicTable geos={geos} imgArray={imgArray}></PicnicTable>
+                    )}
+                    {model && model == "woodenChair" && (
+                        <WoodenChair geos={geos} imgArray={imgArray}></WoodenChair>
+                    )}
                 </Center>
             </ARCamRig>
         </Canvas>

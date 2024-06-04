@@ -35,7 +35,7 @@ const Customizer = () => {
         }
     }, [image]);
 
-    console.log(imagesArray);
+
     const submit = async (data) => {
 
         Swal.fire('Please wait')

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import CarouselItm from '../../components/CarouselItm/CarouselItm'
 import { useSnapshot } from 'valtio'
 import state from '../../store'
@@ -8,19 +8,35 @@ import Sorter from '../../components/Sorters/Sorter'
 import './Products.css'
 import { useNavigate } from 'react-router-dom'
 import WoodenChair from '../../components/ThreeDModels/WoodenChair'
+import axios from 'axios'
 const Products = () => {
+  const [geometries,setGeometries]=useState(null);
   useEffect(() => {
     Aos.init();
+    const fetchData = async () => {
+
+      try {
+        const response= await axios.get('http://localhost:8080/model');
+        setGeometries(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error.message);
+      }
+
+    }
+
+    fetchData();
   }, []);
   const snap = useSnapshot(state);
   const navigate = useNavigate();
   const handleEdit = (data) => {
     state.geometry = data;
-    state.navButton=5;
+    state.navButton = 5;
     navigate('/manage')
   }
   const handleView = (data) => {
     state.geometry = data;
+    state.navButton = 4;
     navigate('/details')
   }
 
@@ -99,6 +115,7 @@ const Products = () => {
       }]
     }
   }
+
   return (
     <div className="container">
       <div className="row">
@@ -159,7 +176,7 @@ const Products = () => {
           <Sorter model="woodenChair" geos={[initialGeos.woodenChair]} />
           <div className='buttons-container'>
             <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(initialGeos.woodenChair) }}>Edit</button>
-            <button className='btn btn-sm btn-outline-success m-1'>View</button>
+            <button className='btn btn-sm btn-outline-success m-1' onClick={() => { handleView(initialGeos.woodenChair) }}>View</button>
             <button className='btn btn-sm btn-outline-info m-1'>Cart</button>
           </div>
         </div>
@@ -167,7 +184,7 @@ const Products = () => {
           <Sorter model="officeTable" geos={[]}></Sorter>
           <div className='buttons-container'>
             <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(initialGeos.officeTable) }}>Edit</button>
-            <button className='btn btn-sm btn-outline-success m-1'>View</button>
+            <button className='btn btn-sm btn-outline-success m-1' onClick={() => { handleView(initialGeos.officeTable) }}>View</button>
             <button className='btn btn-sm btn-outline-info m-1'>Cart</button>
           </div>
         </div>
@@ -175,18 +192,28 @@ const Products = () => {
           <Sorter model="sofa" geos={[]}></Sorter>
           <div className='buttons-container'>
             <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(initialGeos.sofa) }}>Edit</button>
-            <button className='btn btn-sm btn-outline-success m-1'>View</button>
+            <button className='btn btn-sm btn-outline-success m-1' onClick={() => { handleView(initialGeos.sofa) }}>View</button>
             <button className='btn btn-sm btn-outline-info m-1'>Cart</button>
           </div>
         </div>
         <div className="col-lg-3 m-3 model-container" style={{ border: `2px solid ${snap.themeColor}` }}>
           <Sorter model="picnicTable" geos={[]}></Sorter>
           <div className='buttons-container'>
-            <button className='btn btn-sm btn-outline-warning m-1'onClick={() => { handleEdit(initialGeos.picnicTable) }}>Edit</button>
-            <button className='btn btn-sm btn-outline-success m-1'>View</button>
+            <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(initialGeos.picnicTable) }}>Edit</button>
+            <button className='btn btn-sm btn-outline-success m-1' onClick={() => { handleView(initialGeos.picnicTable) }}>View</button>
             <button className='btn btn-sm btn-outline-info m-1'>Cart</button>
           </div>
         </div>
+        {geometries && geometries.map((data)=>(
+          <div className="col-lg-3 m-3 model-container" style={{ border: `2px solid ${snap.themeColor}` }}>
+          <Sorter model={data.type} geos={data.materials}></Sorter>
+          <div className='buttons-container'>
+            <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(data) }}>Edit</button>
+            <button className='btn btn-sm btn-outline-success m-1' onClick={() => { handleView(data) }}>View</button>
+            <button className='btn btn-sm btn-outline-info m-1'>Cart</button>
+          </div>
+        </div>
+        ))}
 
 
       </div>

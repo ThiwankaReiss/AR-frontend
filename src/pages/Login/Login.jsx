@@ -12,7 +12,6 @@ const Login = () => {
   const { handleSubmit, register, reset, formState: { errors } } = useForm();
   const navigate = useNavigate();
   
-  // const { setCustomer } = useCustomer();
 
   useEffect(()=>{
     Aos.init();
