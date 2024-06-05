@@ -1,81 +1,75 @@
-import React, { useEffect, useState } from 'react'
-import state from '../../store'
-import axios from 'axios'
-import { useSnapshot } from 'valtio'
-import Sorter from '../../components/Sorters/Sorter'
+import React, { useState } from "react"
+import OrdersTable from "../../components/OrdersTable/OrdersTable"
+import state from "../../store"
+import { useSnapshot } from "valtio"
 import './Order.css'
+import { useForm } from "react-hook-form"
 const Orders = () => {
+
+    const { handleSubmit, register, reset, formState: { errors } } = useForm();
     const snap = useSnapshot(state);
-    const [userOrders, setUserOrders] = useState(null);
-    useEffect(() => {
-        const fetchOrders = async () => {
-            if (snap.customer != null) {
-                try {
-                    const response = await axios.get(`http://localhost:8080/orders/user/${snap.customer.id}`);
-                    setUserOrders(response.data);
-                    console.log(response.data)
-                } catch (error) {
-                    console.error('Error fetching image:', error);
-                }
-            }
-
-        };
-        fetchOrders();
-
-    }, [snap.customer])
+    const [activeTab, setActiveTab] = useState(1);
+    const [selectedCust, setSelectedCust] = useState(null);
+    const handleChecked = (data) => {
+        setActiveTab(data)
+    }
+    const submit = async (data) => {
+        setSelectedCust(data.custId)
+    }
     return (
         <div className="container">
-            <div className="row">
-                <div className="row">
-                    {
-                        userOrders && userOrders.map((data) => (
+            {snap.customer && snap.customer.status == 'customer' &&
+                <OrdersTable customerId={snap.customer.id}></OrdersTable>
+            }
+            {snap.customer && (snap.customer.status == 'admin' || snap.customer.status == 'employee') &&
+                <>
+                    <div className="row m-3">
+                        <div class="radio-inputs">
+                            <label class="radio">
+                                <input type="radio" name="radio" checked={activeTab == 1} onClick={() => { handleChecked(1) }} />
+                                <span class="name">Your Orders</span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="radio" checked={activeTab == 2} onClick={() => { handleChecked(2) }} />
+                                <span class="name">Orders By Customer Id</span>
+                            </label>
+
+                            <label class="radio">
+                                <input type="radio" name="radio" checked={activeTab == 3} onClick={() => { handleChecked(3) }} />
+                                <span class="name">All Orders</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div className="row">
+                        {activeTab == 1 && <OrdersTable customerId={snap.customer.id}></OrdersTable>}
+                        {activeTab == 2 && (
                             <>
-                                <div className="col-lg-6">
-                                    <h3>Date/Time : {data.date} / {data.time}  </h3>
-                                    
-                                </div>
-                                <div className="col-lg-6 text-end">
-                                    <h3> Total : {data.total}</h3>
-                                </div>
-                                <table class="table text-center table-bordered mt-3">
-                                    <thead>
-                                        <tr >
-                                            <th scope='col' >Name</th>
-                                            <th scope='col'>View</th>
-                                            <th scope='col'>Unit Price</th>
-                                            <th scope='col'>Quantity</th>
-                                            <th scope='col'>Amount</th>
+                                <div className="col-lg-12">
+                                    <div class="d-flex align-items-center">
+                                        <label >Customer Id : &nbsp;</label>
+                                        <input
+                                            type="text"
+                                            class="form-control w-50"
+                                            id="inputPassword"
+                                            placeholder="customer ID"
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {data.detail && data.detail.map((info, index) => (
-                                            <tr>
-                                                <th>{info.product.name}</th>
-                                                <td className='container-width-change'>
-                                                    <div >
-                                                        <Sorter geos={info.product.materials} model={info.product.type}></Sorter>
-                                                    </div>
-                                                </td>
-                                                <td>{info.price}</td>
-                                                <td>{info.amount}</td>
-                                                <td>{info.price * info.amount}</td>
-                                                
-                                            </tr>
-                                        ))}
-
-                                    </tbody>
-                                </table>
+                                            {...register("custId", { required: true, pattern: /^(?!0+$)\d+$/ })}
+                                        ></input>
+                                        {errors && errors.custId && (<p>Enter valid customer Id</p>)}
+                                        <button className="btn btn-outline-primary m-2" onClick={handleSubmit(submit)}>Search</button>
+                                    </div>
+                                </div>
+                                {selectedCust && <OrdersTable customerId={selectedCust}></OrdersTable>}
                             </>
-                        ))
-                    }
 
+                        )}
+                        {activeTab == 3 && <OrdersTable all={true}></OrdersTable>}
+                    </div>
+                </>
 
+            }
 
-                </div>
-            </div>
         </div>
-
     )
 }
 

@@ -112,7 +112,7 @@ export default function NavBar({ navButton }) {
                                     onMouseLeave={() => { sethoverBtn(null) }}
                                     className={`nav-link  ${(hoverBtn || selectedBtn) && (hoverBtn === 7 || selectedBtn == 7) ? 'selected-txt' : 'un-selected-txt'}`}
                                     aria-current="page">
-                                    <i class="bi bi-graph-up-arrow"></i> Orders
+                                    <i class="bi bi-graph-up-arrow"></i> Manage
                                 </Link>
                                 {(hoverBtn || selectedBtn) && (hoverBtn === 7 || selectedBtn == 7) && (<div className='shadow-bellow'></div>)}
                             </li>
