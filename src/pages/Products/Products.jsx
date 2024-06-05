@@ -9,8 +9,36 @@ import './Products.css'
 import { useNavigate } from 'react-router-dom'
 import WoodenChair from '../../components/ThreeDModels/WoodenChair'
 import axios from 'axios'
+import SideBill from '../../components/SideBill/SideBill'
 const Products = () => {
   const [geometries, setGeometries] = useState(null);
+
+  const handleAddToCart = (data) => {
+    // Update the array by adding the new data
+    var isPresent = false;
+    for (let index = 0; index < snap.orderDetail.length; index++) {
+      if (snap.orderDetail[index].product.id == data.id) {
+        isPresent = true;
+
+        const newArray = [...snap.orderDetail];
+        newArray[index] = {
+          ...newArray[index],
+          amount: snap.orderDetail[index].amount + 1
+        };
+        state.orderDetail = newArray;
+      }
+
+    }
+
+    if (!isPresent) {
+      state.orderDetail = [...snap.orderDetail, {
+        amount: 1,
+        price: data.price,
+        product: data
+      }];
+    }
+
+  };
   useEffect(() => {
     Aos.init();
     const fetchData = async () => {
@@ -111,13 +139,22 @@ const Products = () => {
             <div className='buttons-container'>
               <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(data) }}><i class="bi bi-pen"></i></button>
               <button className='btn btn-sm btn-outline-success m-1' onClick={() => { handleView(data) }}><i class="bi bi-eye-fill"></i></button>
-              <button className='btn btn-sm btn-outline-info m-1'><i class="bi bi-cart-dash"></i></button>
+              <button className='btn btn-sm btn-outline-info m-1' onClick={() => { handleAddToCart(data) }}><i class="bi bi-cart-dash"></i></button>
             </div>
           </div>
         ))}
+        <div className='col-lg-12 col-md-3 col-sm-10  mb-3'  >
+          {state.orderDetail.length > 0 &&
+            <div className='bill-container' style={{ border: `2px solid ${snap.themeColor}` }}>
+              <SideBill />
+            </div>
+          }
 
+        </div>
 
       </div>
+
+
     </div>
 
   )

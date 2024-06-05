@@ -22,3 +22,13 @@
     font-weight: 800;
     font-size: 12px;
 }
+
+.bill-container{
+    width: 300px;
+    position: fixed;
+    bottom: 5%;
+    right: 2%;
+    background-color: rgba(252, 251, 251, 0.769);
+    border-radius: 10px;
+
+}
