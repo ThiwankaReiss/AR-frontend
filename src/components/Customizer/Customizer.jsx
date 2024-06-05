@@ -22,13 +22,13 @@ const Customizer = () => {
     const [activeTab, setActiveTab] = useState(null);
     const [geos, setGeos] = useState(snap.geometry.materials);
     const [image, setImage] = useState(null);
-    const [imagesArray, setImagesArray]=useState(snap.geometry.images);
+    const [imagesArray, setImagesArray] = useState(snap.geometry.images);
     const { handleSubmit, register, reset, formState: { errors } } = useForm();
 
     function adjustActiveTab(tab) {
         setActiveTab(activeTab === tab ? null : tab);
     }
-    
+
     useEffect(() => {
         if (image !== null && !imagesArray.includes(image)) {
             setImagesArray(prevArray => [...prevArray, image]);

@@ -12,7 +12,7 @@ const Login = () => {
   const { handleSubmit, register, reset, formState: { errors } } = useForm();
   const navigate = useNavigate();
   
-
+  const snap= useSnapshot(state);
   useEffect(()=>{
     Aos.init();
   },[]);
@@ -34,8 +34,13 @@ const Login = () => {
             icon: "success"
           });
           Swal.hideLoading();
-         
+         if(snap.ckeckout){
+          navigate('/checkout')
+
+         }else{
           navigate('/')
+         }
+          
 
         } else {
           Swal.fire({

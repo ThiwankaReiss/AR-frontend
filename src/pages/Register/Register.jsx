@@ -42,7 +42,12 @@ const Register = () => {
           });
           Swal.hideLoading();
 
-          navigate('/')
+          if(snap.ckeckout){
+            navigate('/checkout')
+  
+           }else{
+            navigate('/')
+           }
 
         } else {
           Swal.fire({

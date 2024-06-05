@@ -5,6 +5,7 @@ const state=proxy({
     navButton:1,
     themeColor:'#152238',
     geometry:null,
-    orderDetail:[]
+    orderDetail:[],
+    ckeckout:false
 });
 export default state;

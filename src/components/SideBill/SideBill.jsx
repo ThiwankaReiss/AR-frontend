@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import state from '../../store';
 import { useSnapshot } from 'valtio';
+import { useNavigate } from 'react-router-dom';
 const SideBill = () => {
     const snap = useSnapshot(state);
     const [total, setTotal] = useState(0.00);
+    
+    const navigate = useNavigate();
     const handleDropcart=()=>{
         state.orderDetail=[];
+    }
+    const handleCheckout=()=>{
+        if(snap.customer==null){
+            state.ckeckout=true;
+            navigate('/login');
+        }else{
+            navigate('/checkout')
+        }
     }
     useEffect(() => {
         var tot = 0;
@@ -24,7 +35,7 @@ const SideBill = () => {
                         </div>
                         <div className="col-6">Name</div>
                         <div className="col-3">Qty</div>
-                        <div className="col-3">Price</div>
+                        <div className="col-3">Price(1)</div>
 
                         {
                             snap.orderDetail.map((data) => (
@@ -50,7 +61,7 @@ const SideBill = () => {
                         <div className="col-4"></div>
                         <div className="col-12 d-flex justify-content-end">
                             <button className='btn btn-sm btn-outline-dark m-2' onClick={handleDropcart}>Drop Cart</button>
-                            <button className='btn btn-sm btn-outline-success m-2'>Chekout</button>
+                            <button className='btn btn-sm btn-outline-success m-2' onClick={handleCheckout}>Chekout</button>
                         </div>
                         
                     </div>
