@@ -4,8 +4,9 @@ import { useSnapshot } from 'valtio'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
 const Checkout = () => {
-
+    const navigate = useNavigate();
     const snap = useSnapshot(state);
     const { handleSubmit, register, reset, formState: { errors } } = useForm();
     const [selectedItm, setSelectedItm] = useState(null);
@@ -46,7 +47,8 @@ const Checkout = () => {
                     Swal.hideLoading();
 
                     state.orderDetail=[];
-
+                    state.navButton=6;
+                    navigate('/orders')
                 } else {
                     Swal.fire({
                         icon: "error",

@@ -34,7 +34,7 @@ const Register = () => {
         if (response.data != null && response.data != '') {
 
           state.customer = response.data;
-          state.navButton = 1;
+      
           Swal.fire({
             title: "Sucess!",
             text: "Registration Sucessfully!",
@@ -43,9 +43,11 @@ const Register = () => {
           Swal.hideLoading();
 
           if(snap.ckeckout){
+            state.navButton = 0;
             navigate('/checkout')
   
            }else{
+            state.navButton = 1;
             navigate('/')
            }
 

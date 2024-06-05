@@ -13,8 +13,10 @@ const SideBill = () => {
     const handleCheckout=()=>{
         if(snap.customer==null){
             state.ckeckout=true;
+            state.navButton=2;
             navigate('/login');
         }else{
+            state.navButton=0;
             navigate('/checkout')
         }
     }
