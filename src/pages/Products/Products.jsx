@@ -60,7 +60,7 @@ const Products = () => {
   const handleEdit = (data) => {
     state.geometry = data;
     state.navButton = 5;
-    navigate('/manage')
+    navigate('/customizer')
   }
   const handleView = (data) => {
     state.geometry = data;

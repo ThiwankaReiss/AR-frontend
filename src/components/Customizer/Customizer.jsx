@@ -81,111 +81,113 @@ const Customizer = () => {
 
 
     return (
-        <>
-            <div className='col-12 d-flex justify-content-end'>
-                <button className='submit-btn' data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ backgroundColor: snap.themeColor }}>Save Product</button>
-            </div>
-            <div className="col-lg-4 m-3 customizer-container card">
+        <div className="container">
+            <div className="row mb-4">
+                <div className='col-12 d-flex justify-content-end'>
+                    <button className='submit-btn' data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ backgroundColor: snap.themeColor }}>Save Product</button>
+                </div>
+                <div className="col-lg-4 m-3 customizer-container card">
 
-                {geos.map((data, index) => (
-                    <>
-                        <DropDown text={data.name} adjustActiveTab={adjustActiveTab} tab={data.name} />
-                        {
-                            activeTab && activeTab === data.name && (
-                                <>
-                                    <Tab setColor={{
-                                        array: geos,
-                                        func: setGeos,
-                                        edit: index
-                                    }} currentColor={data.color} text={data.name + " Color"} />
-                                    <PicUpload getImage={{
-                                        array: geos,
-                                        func: setGeos,
-                                        edit: index
-                                    }} setShowImage={null} showImage={data.visible} text={data.name + " Image"}></PicUpload>
-                                    <ImgScaler showImage={data.visible} Image={data.texture}
-                                        setterFunction={{
+                    {geos.map((data, index) => (
+                        <>
+                            <DropDown text={data.name} adjustActiveTab={adjustActiveTab} tab={data.name} />
+                            {
+                                activeTab && activeTab === data.name && (
+                                    <>
+                                        <Tab setColor={{
                                             array: geos,
                                             func: setGeos,
                                             edit: index
-                                        }}></ImgScaler>
-                                </>
-                            )
-                        }
-                    </>
+                                        }} currentColor={data.color} text={data.name + " Color"} />
+                                        <PicUpload getImage={{
+                                            array: geos,
+                                            func: setGeos,
+                                            edit: index
+                                        }} setShowImage={null} showImage={data.visible} text={data.name + " Image"}></PicUpload>
+                                        <ImgScaler showImage={data.visible} Image={data.texture}
+                                            setterFunction={{
+                                                array: geos,
+                                                func: setGeos,
+                                                edit: index
+                                            }}></ImgScaler>
+                                    </>
+                                )
+                            }
+                        </>
 
-                ))}
+                    ))}
 
-                <div className="container">
+                    <div className="container">
 
-                    <div class="form-group row m-1 d-flex align-items-center">
-                        <label for="inputPassword" class="col-4 col-form-label">Product Name</label>
-                        <div class="col-8">
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="inputPassword"
-                                placeholder="name"
-                                value={snap.geometry.name}
-                                onClick={() => { state.geometry.name = null }}
-                                {...register("name", { required: true })}
-                            ></input>
-                            {errors && errors.name && (<p>Enter valid name</p>)}
+                        <div class="form-group row m-1 d-flex align-items-center">
+                            <label for="inputPassword" class="col-4 col-form-label">Product Name</label>
+                            <div class="col-8">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="inputPassword"
+                                    placeholder="name"
+                                    value={snap.geometry.name}
+                                    onClick={() => { state.geometry.name = null }}
+                                    {...register("name", { required: true })}
+                                ></input>
+                                {errors && errors.name && (<p>Enter valid name</p>)}
+                            </div>
                         </div>
+                        <div class="form-group row m-1 d-flex align-items-center">
+                            <label for="inputPassword" class="col-4 col-form-label">Price</label>
+                            <div class="col-8">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="inputPassword"
+                                    placeholder="name"
+                                    value={snap.geometry.price}
+                                    onClick={() => { state.geometry.price = null }}
+                                    {...register("price", { required: true, pattern: /^\d+(\.\d+)?$/ })}
+                                ></input>
+                                {errors && errors.price && (<p>Enter valid price</p>)}
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="form-group row m-1 d-flex align-items-center">
-                        <label for="inputPassword" class="col-4 col-form-label">Price</label>
-                        <div class="col-8">
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="inputPassword"
-                                placeholder="name"
-                                value={snap.geometry.price}
-                                onClick={() => { state.geometry.price = null }}
-                                {...register("price", { required: true, pattern: /^\d+(\.\d+)?$/ })}
-                            ></input>
-                            {errors && errors.price && (<p>Enter valid price</p>)}
-                        </div>
+                </div>
+                <div className="col-lg-7 m-3 canvas-container ">
+                    <Sorter geos={geos} model={snap.geometry.type}></Sorter>
+                    {/* <CanvasModel model={"officeTable"}></CanvasModel> */}
+                </div>
+
+                <div className='col-lg-6 model-container-2'>
+                    <ImageCarousel imagesArray={imagesArray}></ImageCarousel>
+                    <div className='buttons-container-2'>
+                        <ImageUploader setImage={setImage}></ImageUploader>
                     </div>
 
                 </div>
-            </div>
-            <div className="col-lg-7 m-3 canvas-container ">
-                <Sorter geos={geos} model={snap.geometry.type}></Sorter>
-                {/* <CanvasModel model={"officeTable"}></CanvasModel> */}
-            </div>
-
-            <div className='col-lg-6 model-container-2'>
-                <ImageCarousel imagesArray={imagesArray}></ImageCarousel>
-                <div className='buttons-container-2'>
-                    <ImageUploader setImage={setImage}></ImageUploader>
-                </div>
-
-            </div>
 
 
 
 
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Save New Product</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Confirm to save this as a new product
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={handleSubmit(submit)} >Save</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Save New Product</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Confirm to save this as a new product
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={handleSubmit(submit)} >Save</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

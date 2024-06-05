@@ -84,13 +84,13 @@ export default function NavBar({ navButton }) {
                                 {(hoverBtn || selectedBtn) && (hoverBtn === 4 || selectedBtn == 4) && (<div className='shadow-bellow'></div>)}
                             </li>
                             <li className="nav-item itm-link">
-                                <Link to="/manage"
+                                <Link to="/customizer"
                                     onClick={() => { setSelectedBtn(5) }}
                                     onMouseEnter={() => { sethoverBtn(5) }}
                                     onMouseLeave={() => { sethoverBtn(null) }}
                                     className={`nav-link  ${(hoverBtn || selectedBtn) && (hoverBtn === 5 || selectedBtn == 5) ? 'selected-txt' : 'un-selected-txt'}`}
                                     aria-current="page">
-                                    <i class="bi bi-people-fill"></i> Manage
+                                    <i class="bi bi-people-fill"></i> Customize
                                 </Link>
                                 {(hoverBtn || selectedBtn) && (hoverBtn === 5 || selectedBtn == 5) && (<div className='shadow-bellow'></div>)}
                             </li>
@@ -104,6 +104,17 @@ export default function NavBar({ navButton }) {
                                     <i class="bi bi-graph-up-arrow"></i> Orders
                                 </Link>
                                 {(hoverBtn || selectedBtn) && (hoverBtn === 6 || selectedBtn == 6) && (<div className='shadow-bellow'></div>)}
+                            </li>
+                            <li className="nav-item itm-link">
+                                <Link to="/manage"
+                                    onClick={() => { setSelectedBtn(7) }}
+                                    onMouseEnter={() => { sethoverBtn(7) }}
+                                    onMouseLeave={() => { sethoverBtn(null) }}
+                                    className={`nav-link  ${(hoverBtn || selectedBtn) && (hoverBtn === 7 || selectedBtn == 7) ? 'selected-txt' : 'un-selected-txt'}`}
+                                    aria-current="page">
+                                    <i class="bi bi-graph-up-arrow"></i> Orders
+                                </Link>
+                                {(hoverBtn || selectedBtn) && (hoverBtn === 7 || selectedBtn == 7) && (<div className='shadow-bellow'></div>)}
                             </li>
                         </ul>
                     </div>

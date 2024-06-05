@@ -4,7 +4,7 @@ const Manage = () => {
     return (
         <div className="container">
             <div className="row mb-4">
-              <Customizer></Customizer>  
+              Manage
             </div>
         </div>
     )

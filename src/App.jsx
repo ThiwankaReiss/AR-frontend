@@ -13,6 +13,7 @@ import Detail from './pages/Detail/Detail'
 import Manage from './pages/Manage/Manage'
 import Checkout from './pages/Checkout/Checkout'
 import Orders from './pages/Orders/Orders'
+import Customizer from './components/Customizer/Customizer'
 
 function App() {
   const snap = useSnapshot(state);
@@ -28,6 +29,7 @@ function App() {
         <Route path="/manage" element={<Manage/>} />
         <Route path="/checkout" element={<Checkout/>} />
         <Route path="/orders" element={<Orders/>} />
+        <Route path="/customizer" element={<Customizer/>} />
       </Routes>
     </BrowserRouter>
   )
