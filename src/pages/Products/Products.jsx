@@ -46,9 +46,9 @@ const Products = () => {
       try {
         const response = await axios.get('http://localhost:8080/model');
         setGeometries(response.data);
-        
+
       } catch (error) {
-        
+
       }
 
     }
@@ -137,7 +137,9 @@ const Products = () => {
               {data.name}
             </div>
             <div className='buttons-container'>
-              <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(data) }}><i class="bi bi-pen"></i></button>
+              {snap.customer && (snap.customer.status == "admin" || snap.customer.status == "employee") && (
+                <button className='btn btn-sm btn-outline-warning m-1' onClick={() => { handleEdit(data) }}><i class="bi bi-pen"></i></button>
+              )}
               <button className='btn btn-sm btn-outline-success m-1' onClick={() => { handleView(data) }}><i class="bi bi-eye-fill"></i></button>
               <button className='btn btn-sm btn-outline-info m-1' onClick={() => { handleAddToCart(data) }}><i class="bi bi-cart-dash"></i></button>
             </div>

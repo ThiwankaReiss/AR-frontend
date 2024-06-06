@@ -13,6 +13,7 @@ const Register = () => {
   const [passMissMatch, setPassMissMatch] = useState(false);
   // const { setCustomer } = useCustomer();
   const snap = useSnapshot(state);
+
   useEffect(() => {
     Aos.init();
   }, []);
