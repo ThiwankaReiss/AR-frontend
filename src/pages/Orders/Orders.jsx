@@ -9,12 +9,14 @@ const Orders = () => {
     const { handleSubmit, register, reset, formState: { errors } } = useForm();
     const snap = useSnapshot(state);
     const [activeTab, setActiveTab] = useState(1);
-    const [selectedCust, setSelectedCust] = useState(null);
+    const [selectedId, setSelectedId] = useState(null);
     const handleChecked = (data) => {
-        setActiveTab(data)
+        setActiveTab(data);
+        reset();
+        setSelectedId(null);
     }
     const submit = async (data) => {
-        setSelectedCust(data.custId)
+        setSelectedId(data.id)
     }
     return (
         <div className="container">
@@ -38,6 +40,10 @@ const Orders = () => {
                                 <input type="radio" name="radio" checked={activeTab == 3} onClick={() => { handleChecked(3) }} />
                                 <span class="name">All Orders</span>
                             </label>
+                            <label class="radio">
+                                <input type="radio" name="radio" checked={activeTab == 4} onClick={() => { handleChecked(4) }} />
+                                <span class="name">Order By Id</span>
+                            </label>
                         </div>
                     </div>
                     <div className="row">
@@ -53,17 +59,37 @@ const Orders = () => {
                                             id="inputPassword"
                                             placeholder="customer ID"
 
-                                            {...register("custId", { required: true, pattern: /^(?!0+$)\d+$/ })}
+                                            {...register("id", { required: true, pattern: /^(?!0+$)\d+$/ })}
                                         ></input>
-                                        {errors && errors.custId && (<p>Enter valid customer Id</p>)}
+                                        {errors && errors.id && (<p>Enter valid customer Id</p>)}
                                         <button className="btn btn-outline-primary m-2" onClick={handleSubmit(submit)}>Search</button>
                                     </div>
                                 </div>
-                                {selectedCust && <OrdersTable customerId={selectedCust}></OrdersTable>}
+                                {selectedId && <OrdersTable customerId={selectedId}></OrdersTable>}
                             </>
 
                         )}
                         {activeTab == 3 && <OrdersTable all={true}></OrdersTable>}
+                        {activeTab == 4 && (
+                            <>
+                                <div className="col-lg-12">
+                                    <div class="d-flex align-items-center">
+                                        <label >Order Id : &nbsp;</label>
+                                        <input
+                                            type="text"
+                                            class="form-control w-50"
+                                            id="inputPassword"
+                                            placeholder="Order ID"
+
+                                            {...register("id", { required: true, pattern: /^(?!0+$)\d+$/ })}
+                                        ></input>
+                                        {errors && errors.id && (<p>Enter valid customer Id</p>)}
+                                        <button className="btn btn-outline-primary m-2" onClick={handleSubmit(submit)}>Search</button>
+                                    </div>
+                                </div>
+                                {selectedId && <OrdersTable byId={selectedId}></OrdersTable>}
+                            </>
+                        )}
                     </div>
                 </>
 

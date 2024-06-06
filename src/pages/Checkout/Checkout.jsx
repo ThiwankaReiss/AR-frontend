@@ -24,14 +24,14 @@ const Checkout = () => {
         };
         state.orderDetail = newArray;
     }
-    const handlePlaceOrder=()=>{
+    const handlePlaceOrder = () => {
         Swal.fire('Please wait')
         Swal.showLoading();
         axios.post('http://localhost:8080/order', {
 
-        user:snap.customer,
-        total :total,
-        detail:snap.orderDetail
+            user: snap.customer,
+            total: total,
+            detail: snap.orderDetail
         })
             .then(function (response) {
 
@@ -46,8 +46,8 @@ const Checkout = () => {
                     });
                     Swal.hideLoading();
 
-                    state.orderDetail=[];
-                    state.navButton=6;
+                    state.orderDetail = [];
+                    state.navButton = 6;
                     navigate('/orders')
                 } else {
                     Swal.fire({
@@ -171,8 +171,8 @@ const Checkout = () => {
                     </div>
                 </div>
             </div>
-             {/* modal31 */}
-             <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            {/* modal31 */}
+            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
