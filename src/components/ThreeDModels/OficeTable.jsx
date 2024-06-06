@@ -82,7 +82,7 @@ const OficeTable = ({  imgArray, geos }) => {
        
         return null;
     };
-console.log(textures)
+
     return (
         <group
             scale={[50, 50, 50]}

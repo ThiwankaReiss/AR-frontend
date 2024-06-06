@@ -48,7 +48,7 @@ const PicUpload = ({ text, getImage, currentImage, setShowImage, showImage }) =>
             // setShowImage(true);
 
            
-            console.log(response.data);
+           
         } catch (error) {
             console.error('Error uploading image:', error);
         }

@@ -7,7 +7,7 @@ const ImageUploader = ({ setImage }) => {
   };
 
   const uploadImage = (e) => {
-    console.log("hi")
+   
     const file = e.target.files[0];
 
     const formData = new FormData();
@@ -25,7 +25,7 @@ const ImageUploader = ({ setImage }) => {
 
       })
       .catch(function (error) {
-        console.log(error);
+      
       });
 
 

@@ -40,7 +40,7 @@ const Sorter = ({ geos, model, augmented, avgIntensity, lightX, lightY, modelSiz
         fetchImages();
     }, [geos]);
 
-    console.log(imgArray);
+    
 
     return (
         <>

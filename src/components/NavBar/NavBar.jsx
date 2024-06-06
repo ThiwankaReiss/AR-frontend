@@ -6,7 +6,7 @@ import state from '../../store'
 import Tab from '../Tab/Tab';
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 export default function NavBar({ navButton }) {
-    console.log(navButton);
+    
     const [hoverBtn, sethoverBtn] = useState(null);
     const [selectedBtn, setSelectedBtn] = useState(navButton);
     const snap = useSnapshot(state);
@@ -19,7 +19,7 @@ export default function NavBar({ navButton }) {
 
     useEffect(() => {
         setSelectedBtn(navButton);
-        console.log(navButton);
+        
         const toastEl = document.getElementById('liveToast');
         if (toastEl) {
             const toastBootstrap = new bootstrap.Toast(toastEl);

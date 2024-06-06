@@ -17,7 +17,7 @@ const Register = () => {
     Aos.init();
   }, []);
   const submit = async (data) => {
-    console.log(data);
+  
     if (data.password != data.confirm) {
       setPassMissMatch(true);
     } else {
@@ -29,7 +29,7 @@ const Register = () => {
         "password": data.password
       })
         .then(function (response) {
-          console.log(response.data);
+          
 
           if (response.data != null && response.data != '') {
 
@@ -61,7 +61,7 @@ const Register = () => {
           }
         })
         .catch(function (error) {
-          console.log(error);
+          
         });
     }
 

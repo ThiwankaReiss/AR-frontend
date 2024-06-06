@@ -17,12 +17,12 @@ const Login = () => {
     Aos.init();
   },[]);
   const submit = async (data) => {
-    console.log(data);
+    
     Swal.fire('Please wait')
     Swal.showLoading();
     axios.post('http://localhost:8080/auth', data)
       .then(function (response) {
-        console.log(response.data);
+       
 
         if (response.data != null && response.data != '') {
 
@@ -54,7 +54,7 @@ const Login = () => {
         }
       })
       .catch(function (error) {
-        console.log(error);
+        
       });
   }
  

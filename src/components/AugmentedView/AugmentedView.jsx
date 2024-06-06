@@ -18,7 +18,7 @@ const AugmentedView = () => {
     function getValue(event) {
         const value = event.target.value;
         setModelSize(value);
-        console.log(value);
+        
     }
     useEffect(() => {
         const enableCamera = async () => {

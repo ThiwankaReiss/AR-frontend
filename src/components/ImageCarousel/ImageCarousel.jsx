@@ -40,7 +40,7 @@ const ImageCarousel = ({ imagesArray }) => {
 
         fetchImages();
     }, [imagesArray]);
-    console.log(imgArray)
+    
     return (
         <div className="container card mt-3" style={{ backgroundColor: snap.themeColor }}>
             <div className="row d-flex align-items-center justify-content-center">

@@ -38,7 +38,7 @@ const Checkout = () => {
 
                 if (response.data != null && response.data != '') {
 
-                    console.log(response.data)
+                    
                     Swal.fire({
                         title: "Sucess!",
                         text: "Registration Sucessfully!",
