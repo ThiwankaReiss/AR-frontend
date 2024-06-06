@@ -24,6 +24,7 @@ const Customizer = () => {
     const [image, setImage] = useState(null);
     const [imagesArray, setImagesArray] = useState(snap.geometry.images);
     const { handleSubmit, register, reset, formState: { errors } } = useForm();
+    const [activeImage, setActiveImage] = useState(null);
 
     function adjustActiveTab(tab) {
         setActiveTab(activeTab === tab ? null : tab);
@@ -36,12 +37,66 @@ const Customizer = () => {
     }, [image]);
 
 
-    const submit = async (data) => {
+    const saveNew = async (data) => {
 
         Swal.fire('Please wait')
         Swal.showLoading();
+        const materials = geos.map(item => ({
+            ...item,
+            id: null,
+            modelId: null
+        }));
         axios.post('http://localhost:8080/model', {
 
+            price: data.price,
+            name: data.name,
+            type: snap.geometry.type,
+            images: imagesArray,
+            materials: materials
+        })
+            .then(function (response) {
+
+
+                if (response.data != null && response.data != '') {
+
+
+                    Swal.fire({
+                        title: "Sucess!",
+                        text: "Registration Sucessfully!",
+                        icon: "success"
+                    });
+                    Swal.hideLoading();
+
+
+
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Failed!",
+                        text: "Something went wrong",
+                    });
+                    Swal.hideLoading();
+                }
+            })
+            .catch(function (error) {
+
+            });
+
+    }
+    const handleDeleteImage = () => {
+        if (activeImage == null) {
+            alert("click on the image you wish to remove")
+        } else {
+            const newItems = imagesArray.filter((item, i) => i !== activeImage);
+            setImagesArray(newItems);
+        }
+    }
+    const update = async (data) => {
+        Swal.fire('Please wait')
+        Swal.showLoading();
+
+        axios.post('http://localhost:8080/model', {
+            id: snap.geometry.id,
             price: data.price,
             name: data.name,
             type: snap.geometry.type,
@@ -75,16 +130,16 @@ const Customizer = () => {
             .catch(function (error) {
 
             });
-
     }
-
 
 
     return (
         <div className="container">
             <div className="row mb-4">
                 <div className='col-12 d-flex justify-content-end'>
-                    <button className='submit-btn' data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ backgroundColor: snap.themeColor }}>Save Product</button>
+                    <button className='submit-btn-2' data-bs-toggle="modal" data-bs-target="#exampleModal2" style={{ backgroundColor: snap.themeColor }}>Update Product</button>
+
+                    <button className='submit-btn' data-bs-toggle="modal" data-bs-target="#exampleModal1" style={{ backgroundColor: snap.themeColor }}>Save As New Product</button>
                 </div>
                 <div className="col-lg-4 m-3 customizer-container card">
 
@@ -158,9 +213,10 @@ const Customizer = () => {
                 </div>
 
                 <div className='col-lg-6 model-container-2'>
-                    <ImageCarousel imagesArray={imagesArray}></ImageCarousel>
+                    <ImageCarousel imagesArray={imagesArray} getImgActive={setActiveImage}></ImageCarousel>
                     <div className='buttons-container-2'>
                         <ImageUploader setImage={setImage}></ImageUploader>
+                        <button className='btn btn-light m-1' onClick={handleDeleteImage}><i class="bi bi-dash-circle"></i></button>
                     </div>
 
                 </div>
@@ -168,8 +224,8 @@ const Customizer = () => {
 
 
 
-
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                {/* modal1 */}
+                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -181,7 +237,25 @@ const Customizer = () => {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={handleSubmit(submit)} >Save</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={handleSubmit(saveNew)} >Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* modal2 */}
+                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Product</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Confirm to update this product
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={handleSubmit(update)} >Save</button>
                             </div>
                         </div>
                     </div>

@@ -27,3 +27,11 @@
     bottom: 40px;
     right:30px;
 }
+
+.submit-btn-2{
+    padding: 10px;
+    border-radius: 10px;
+    color:white;
+    border-color: aliceblue;
+    margin-right: 5px;
+}

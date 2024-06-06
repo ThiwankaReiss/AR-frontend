@@ -3,11 +3,18 @@ import './ImageCarousel.css'
 import { useSnapshot } from 'valtio'
 import state from '../../store'
 import axios from 'axios'
-const ImageCarousel = ({ imagesArray }) => {
+const ImageCarousel = ({ imagesArray,getImgActive }) => {
     const [activeImg, setActiveImage] = useState(0);
     const snap = useSnapshot(state);
     const [imgArray, setImgArray] = useState([]);
 
+    const getActiveImg=(index)=>{
+        setActiveImage(index)
+        if(getImgActive!=null){
+            getImgActive(index)
+        }
+  
+    }
     useEffect(() => {
         const fetchImages = async () => {
             try {
@@ -71,7 +78,7 @@ const ImageCarousel = ({ imagesArray }) => {
                 </div>
                 <div className="col-11 mt-3 mb-3 d-flex justify-content-center">
                     {imgArray && imgArray.map((data, index) => (
-                        <button onClick={() => setActiveImage(index)} className='btn btn-outline-light add-padding'>
+                        <button onClick={() => {getActiveImg(index)}} className='btn btn-outline-light add-padding'>
                             <img height="40px" width="50px" src={data.image}></img>
                         </button>
                     ))}
