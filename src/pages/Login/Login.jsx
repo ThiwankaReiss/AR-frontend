@@ -67,7 +67,6 @@ const Login = () => {
           state.navButton=1;
           state.themeColor='#152238';
           state.geometry=null;
-          state.orderDetail=[];
           state.ckeckout=false;
 
           Swal.fire({

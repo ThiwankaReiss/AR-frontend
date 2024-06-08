@@ -3,7 +3,7 @@ import { useGLTF, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
 const PicnicTable = ({ imgArray, geos}) => {
-    const { nodes, materials } = useGLTF('/PicnicWoodTable.glb');
+    const { nodes, materials } = useGLTF('./PicnicWoodTable.glb');
 
     const textures = {
         Table: null
